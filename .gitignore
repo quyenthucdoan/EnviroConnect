@@ -1,2 +1,6 @@
 # Google App Engine generated folder
 appengine-generated/
+package-log.json 
+backend/node_modules/*
+node_modules/*
+
