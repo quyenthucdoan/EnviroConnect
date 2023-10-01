@@ -1,17 +1,29 @@
-const express = require('express');
+import express from "express";
 const router = express.Router();
-const programmingLanguagesController = require('../controllers/programmingLanguages.controller');
+import {
+  createUser,
+  getUser,
+  findBuddy,
+  registerActivity,
+  markDoneActivity,
+} from "../controllers/user.controller.js";
 
-/* GET programming languages. */
-router.get('/', programmingLanguagesController.get);
-  
-/* POST programming language */
-router.post('/', programmingLanguagesController.create);
+/* Create user*/
+router.post("/users/create-user", createUser);
 
-/* PUT programming language */
-router.put('/:id', programmingLanguagesController.update);
+/* Get User */
+router.get("/users/:id", getUser);
 
-/* DELETE programming language */
-router.delete('/:id', programmingLanguagesController.remove);
+/* Find friends near you */
+router.get("/users/:id/near-buddies", findBuddy);
 
-module.exports = router;
+/* Return all your friends*/
+// router.get("/users/:id/friends", listFriends);
+
+/* Register activity  for user*/
+router.put("/users/:id/added-activity", registerActivity);
+
+/* Completed an activity*/
+router.put("/users/:id/done-activity", markDoneActivity);
+
+export default router;

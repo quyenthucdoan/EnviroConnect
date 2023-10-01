@@ -1,0 +1,17 @@
+[
+  {
+    "_id": "651d3d9ba4e4a956761ec226",
+    "name": "United Nations Environment Programme",
+    "description": "The United Nations Environment Programme is responsible for coordinating responses to environmental issues within the United Nations system. It was established by Maurice Strong, its first director, after the United Nations Conference on the Human Environment in Stockholm in June 1972."
+  },
+  {
+    "_id": "651d3d9ba4e4a956761ec227",
+    "name": "Global Environment Facility",
+    "description": "The Global Environment Facility is a multilateral environmental fund that provides grants and blended finance for projects related to biodiversity, climate change, international waters, land degradation, ..."
+  },
+  {
+    "_id": "651d3d9ba4e4a956761ec228",
+    "name": "Green Climate Fund",
+    "description": "The Green Climate Fund is a fund established within the framework of the United Nations Framework Convention on Climate Change as an operating entity of the Financial Mechanism to assist developing countries in adaptation and mitigation practices to counter climate change. The GCF is based in Incheon, South Korea."
+  }
+]
