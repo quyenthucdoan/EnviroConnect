@@ -1,31 +1,23 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const app = express();
-const port = process.env.PORT || 3000;
-const programmingLanguagesRouter = require("./src/routes/programmingLanguages.route");
+import express from "express";
+import cors from "cors";
+import bodyParser from "body-parser";
+import connectDB from "./src/models/index.js";
+import { DEFAULT_PORT } from "./src/configs/general.config.js";
+import userRoute from "./src/routes/user.route.js";
 
-app.use(bodyParser.json());
-app.use(
-  bodyParser.urlencoded({
-    extended: true,
-  })
-);
+connectDB();
+const app = express();
+app.use(cors());
+app.use(express.json());
+app.use(bodyParser.text());
+const urlencodedParser = bodyParser.urlencoded({ extended: true });
+
+app.use(userRoute);
 
 app.get("/", (req, res) => {
-  res.json({ message: "ok" });
+  res.send("Server!!!!");
 });
 
-app.use("/programming-languages", programmingLanguagesRouter);
-
-/* Error handler middleware */
-app.use((err, req, res, next) => {
-  const statusCode = err.statusCode || 500;
-  console.error(err.message, err.stack);
-  res.status(statusCode).json({ message: err.message });
-
-  return;
-});
-
-app.listen(port, "0.0.0.0", () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+app.listen(DEFAULT_PORT, () => {
+  console.log("App is listening on port ", DEFAULT_PORT);
 });

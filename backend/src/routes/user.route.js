@@ -1,17 +1,17 @@
-const express = require('express');
+import express from "express";
 const router = express.Router();
-const programmingLanguagesController = require('../controllers/programmingLanguages.controller');
+import { createUser } from "../controllers/user.controller.js";
 
 /* GET programming languages. */
-router.get('/', programmingLanguagesController.get);
-  
+// router.get("/", programmingLanguagesController.get);
+
 /* POST programming language */
-router.post('/', programmingLanguagesController.create);
+router.post("/users", createUser);
 
 /* PUT programming language */
-router.put('/:id', programmingLanguagesController.update);
+// router.put("/:id", programmingLanguagesController.update);
 
 /* DELETE programming language */
-router.delete('/:id', programmingLanguagesController.remove);
+// router.delete("/:id", programmingLanguagesController.remove);
 
-module.exports = router;
+export default router;
