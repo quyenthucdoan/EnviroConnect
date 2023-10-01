@@ -1,0 +1,684 @@
+openapi: 3.0.3
+info:
+  title: EnviroConnect
+  description: API documentation for IMA EnviroConnect
+  version: 1.0.0
+servers:
+  - url: http://103.200.20.117:5000
+  - url: http://localhost:5000
+tags:
+  - name: users
+    description: External APIs for users
+  - name: activities
+    description: External APIs for activities
+paths:
+  /api/users/create-user:
+    post:
+      tags:
+        - users
+      summary: Create a user
+      description: Create a user
+      operationId: Create a user
+      requestBody:
+        required: true
+        description: Create a user
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateUserRequest"
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateUserResponse"
+        404:
+          description: Error
+  /api/users/{userid}:
+    get:
+      tags:
+        - users
+      parameters:
+        - in: path
+          name: userid
+          description: id of user
+          required: true
+          schema:
+            type: string
+      summary: Get a user
+      description: get a user
+      operationId: get a user
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateUserResponse"
+        404:
+          description: Error
+  /api/users/{userid}/near-buddies:
+    get:
+      tags:
+        - users
+      parameters:
+        - in: path
+          name: userid
+          description: id of user
+          required: true
+          schema:
+            type: string
+      summary: Get a user
+      description: get a user
+      operationId: get a user
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/FindBuddyResponse"
+        404:
+          description: Error
+  /api/users/{userid}/added-activity:
+    put:
+      tags:
+        - users
+      parameters:
+        - in: path
+          name: userid
+          description: id of user
+          required: true
+          schema:
+            type: string
+      summary: add 1 activity into user when user register a activity
+      description: add 1 activity into user when user register a activity
+      operationId: registerActivity
+      requestBody:
+        required: true
+        description: activityid need to add
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterActivityRequest"
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RegisterActivityResponse"
+        400:
+          description: Invalid input
+  /api/users/{userid}/done-activity:
+    put:
+      tags:
+        - users
+      parameters:
+        - in: path
+          name: userid
+          description: id of user
+          required: true
+          schema:
+            type: string
+      summary: mark done 1 activity
+      description: mark done 1 activity
+      operationId: MarkDoneActivity
+      requestBody:
+        required: true
+        description: activityid need to mark done
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MarkDoneActivityRequest"
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MarkDoneActivityResponse"
+        400:
+          description: Invalid input
+  /api/activities/create-activity:
+    post:
+      tags:
+        - activities
+      summary: create 1 activity
+      description: create 1 activity
+      operationId: CreateActivity
+      requestBody:
+        required: true
+        description: Create a activity
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateActivityRequest"
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateActivityResponse"
+        404:
+          description: Error
+  /api/activities/{id}:
+    get:
+      tags:
+        - activities
+      parameters:
+        - in: path
+          name: id
+          description: id of activity
+          required: true
+          schema:
+            type: string
+      summary: Get an activity
+      description: Get an activity
+      operationId: GetAnActivity
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/CreateActivityResponse"
+        404:
+          description: Error
+  /api/activities/:
+    get:
+      tags:
+        - activities
+      summary: Get all activity
+      description: Get all activity
+      operationId: Get all activity
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/CreateActivityResponse"
+        404:
+          description: Error
+  /api/activities/651a5221a4e4a95676a65e8f/user:
+    get:
+      tags:
+        - activities
+      parameters:
+        - in: path
+          name: userid
+          description: id of user
+          required: true
+          schema:
+            type: string
+      summary: Get nearby activity
+      description: Get nearby activity
+      operationId: Get nearby activity
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ListNearbyActivityResponse"
+        404:
+          description: Error
+
+components:
+  schemas:
+    GetUserJobListReponse:
+      type: object
+      properties:
+        data:
+          type: array
+          example:
+            [
+              {
+                id: 230816000001,
+                priority: 5,
+                type: archive,
+                objectId: 7de92d5d-5ef1-45a7-a7a2-8fce7c626934,
+                status: complete,
+                createdAt: 2023-08-16T08:23:42.786Z,
+              },
+            ]
+          items:
+            type: object
+        message:
+          type: string
+          example:
+        result:
+          type: string
+          example: ok
+    CreateUserRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Huynh Ngoc Nhu
+        email:
+          type: string
+          example: nhuhuynh@gmail.com
+        address:
+          type: string
+          example: 244A Lê Văn Quới, Bình Trị Đông, Bình Tân, Thành phố Hồ Chí Minh
+        location:
+          type: object
+          properties:
+            lat:
+              type: number
+              example: 10.7812029
+            long:
+              type: number
+              example: 106.6030883
+        isOrganizer:
+          type: boolean
+          example: false
+    CreateUserResponse:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: 652274823b7da4dfe80a963e
+        name:
+          type: string
+          example: Huynh Ngoc Nhu
+        email:
+          type: string
+          example: nhuhuynh@gmail.com
+        address:
+          type: string
+          example: 244A Lê Văn Quới, Bình Trị Đông, Bình Tân, Thành phố Hồ Chí Minh
+        location:
+          type: object
+          properties:
+            lat:
+              type: number
+              example: 10.7812029
+            long:
+              type: number
+              example: 106.6030883
+        isOrganizer:
+          type: boolean
+          example: false
+        buddy:
+          type: array
+          example: []
+        activities:
+          type: array
+          example: []
+    FindBuddyResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          _id:
+            type: string
+          name:
+            type: string
+          email:
+            type: string
+          address:
+            type: string
+          location:
+            type: object
+            properties:
+              lat:
+                type: number
+              long:
+                type: number
+          isOrganizer:
+            type: boolean
+          buddy:
+            type: array
+          activities:
+            type: array
+            items:
+              type: object
+              properties:
+                activityId:
+                  type: string
+                joinDate:
+                  type: string
+                status:
+                  type: number
+          distance:
+            type: number
+      example:
+        - _id: 651a5221a4e4a95676a65e8f
+          name: Lâm Vĩ Dạ
+          email: lamvida@gmail.com
+          address: 10 Đ. Kha Vạn Cân, Hiệp Bình Chánh, Thủ Đức, Thành phố Hồ Chí Minh
+          location:
+            lat: 10.8260009
+            long: 106.7106303
+          isOrganizer: false
+          buddy: []
+          activities:
+            activityId: 651d42afa4e4a95676215754
+            joinDate: 2023-10-06T14:34:18.501Z
+            status: 0
+          distance: 1.395351550082732
+        - _id: 651123221a4e4a95676a65e8
+          name: Hứa Minh Đạt
+          email: huaminhdat@gmail.com
+          address: 60 Bình Chánh, Hiệp Bình Chánh, Thủ Đức, Thành phố Hồ Chí Minh
+          location:
+            lat: 10.8260232
+            long: 106.7106403
+          isOrganizer: false
+          buddy: []
+          activities:
+            activityId: 651d42afa4e4a95676215754
+            joinDate: 2023-10-06T14:34:18.501Z
+            status: 0
+          distance: 2.45678
+        - _id: 6511232210000a95676a65e8
+          name: Nguyễn Cao Kỳ Duyên
+          email: caokiduyen@gmail.com
+          address: 60 Lạc Long Quân, Hiệp Bình Chánh, Thủ Đức, Thành phố Hồ Chí Minh
+          location:
+            lat: 10.8260009
+            long: 106.7106303
+          isOrganizer: false
+          buddy: []
+          activities:
+            activityId: 651d42afa4e4a95676215754
+            joinDate: 2023-10-06T14:34:18.501Z
+            status: 0
+          distance: 12.39535155000000
+    RegisterActivityResponse:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: 652274823b7da4dfe80a963e
+        name:
+          type: string
+          example: Huynh Ngoc Nhu
+        email:
+          type: string
+          example: nhuhuynh@gmail.com
+        address:
+          type: string
+          example: 244A Lê Văn Quới, Bình Trị Đông, Bình Tân, Thành phố Hồ Chí Minh
+        location:
+          type: object
+          properties:
+            lat:
+              type: number
+              example: 10.7812029
+            long:
+              type: number
+              example: 106.6030883
+        isOrganizer:
+          type: boolean
+          example: false
+        buddy:
+          type: array
+          example: []
+        activities:
+          type: array
+          items:
+            type: object
+            properties:
+              activityId:
+                type: string
+              joinDate:
+                type: string
+              status:
+                type: number
+            example:
+              - activityId: 651d42afa4e4a95676215752,
+                joinDate: 2023-10-20T03:24:35.996Z,
+                status: 0
+              - activityId: 651d42a12345a95676215752,
+                joinDate: 2023-10-16T03:24:35.996Z,
+                status: 0
+    RegisterActivityRequest:
+      type: object
+      properties:
+        activityid:
+          type: string
+          example: 651d42a12345a95676215752
+    MarkDoneActivityRequest:
+      type: object
+      properties:
+        activityid:
+          type: string
+          example: 651d42a12345a95676215752
+    MarkDoneActivityResponse:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: 652274823b7da4dfe80a963e
+        name:
+          type: string
+          example: Huynh Ngoc Nhu
+        email:
+          type: string
+          example: nhuhuynh@gmail.com
+        address:
+          type: string
+          example: 244A Lê Văn Quới, Bình Trị Đông, Bình Tân, Thành phố Hồ Chí Minh
+        location:
+          type: object
+          properties:
+            lat:
+              type: number
+              example: 10.7812029
+            long:
+              type: number
+              example: 106.6030883
+        isOrganizer:
+          type: boolean
+          example: false
+        buddy:
+          type: array
+          example: []
+        activities:
+          type: array
+          items:
+            type: object
+            properties:
+              activityId:
+                type: string
+              joinDate:
+                type: string
+              status:
+                type: number
+            example:
+              - activityId: 651d42afa4e4a95676215752,
+                joinDate: 2023-10-20T03:24:35.996Z,
+                status: 0
+              - activityId: 651d42a12345a95676215752,
+                joinDate: 2023-10-16T03:24:35.996Z,
+                status: 1
+    CreateActivityRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Clean up Vung Tau beach
+        startDate:
+          type: string
+          example: Sat Oct 15 2023 01:04:45 GMT+0700 (Indochina Time)
+        endDate:
+          type: string
+          example: Sun Oct 20 2023 01:04:45 GMT+0700 (Indochina Time)
+        description:
+          type: string
+          example: This page provides you with a snapshot of this activity that brings students into contact with their surrounding environment and the effects of littering. Do you want to do something good for your school environment? Get together and clean up a littered area near your school campus. Remember, litter attracts more litter! Become the change you want to see and inspire other students in your school to keep the environment clean and healthy. We recommend that you use the ‘Introduction to Solid Waste’ activity before any of the other activities as it is a good starting point for students to learn about waste and provides a comprehensive overview of how waste is generated and its impacts on animals, the environment and us. If you have already done so and wish to continue to download the rest of this free activity please click on the download icon below. Enjoy!
+        address:
+          type: string
+          example: 34/1 Đường số 15, Bình Hưng Hoà, Bình Tân, Thành phố Hồ Chí Minh
+        location:
+          type: object
+          properties:
+            lat:
+              type: number
+              example: 10.8021005
+            long:
+              type: number
+              example: 106.5994801
+        organizerID:
+          type: string
+          example: 651d3d9ba4e4a956761ec226
+    CreateActivityResponse:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: 652283bcd93466fad3d3d70a
+        name:
+          type: string
+          example: Clean up Vung Tau beach
+        startDate:
+          type: string
+          example: Sat Oct 15 2023 01:04:45 GMT+0700 (Indochina Time)
+        endDate:
+          type: string
+          example: Sun Oct 20 2023 01:04:45 GMT+0700 (Indochina Time)
+        description:
+          type: string
+          example: This page provides you with a snapshot of this activity that brings students into contact with their surrounding environment and the effects of littering. Do you want to do something good for your school environment? Get together and clean up a littered area near your school campus. Remember, litter attracts more litter! Become the change you want to see and inspire other students in your school to keep the environment clean and healthy. We recommend that you use the ‘Introduction to Solid Waste’ activity before any of the other activities as it is a good starting point for students to learn about waste and provides a comprehensive overview of how waste is generated and its impacts on animals, the environment and us. If you have already done so and wish to continue to download the rest of this free activity please click on the download icon below. Enjoy!
+        address:
+          type: string
+          example: 34/1 Đường số 15, Bình Hưng Hoà, Bình Tân, Thành phố Hồ Chí Minh
+        location:
+          type: object
+          properties:
+            lat:
+              type: number
+              example: 10.8021005
+            long:
+              type: number
+              example: 106.5994801
+        organizerID:
+          type: string
+          example: 651d3d9ba4e4a956761ec226
+    GetAllActivityResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          _id:
+            type: string
+          name:
+            type: string
+          startDate:
+            type: string
+          endDate:
+            type: string
+          description:
+            type: string
+          address:
+            type: string
+          location:
+            type: object
+            properties:
+              lat:
+                type: number
+              long:
+                type: number
+          organizerID:
+            type: string
+      example:
+        - _id: 651d42afa4e4a95676215754,
+          name: TRG Gives Hands To The WWF’s Tree Planting Project
+          startDate: 2023-11-11T16:00:00.000Z
+          endDate: 2023-11-14T16:00:00.000Z
+          description: “This project is among community efforts that seek to mitigate the impact of climate change. Planting tree is recognized as powerful tools in minimizing the effects. By joining the project, we are happy to give more hand to improve the environment and support the livelihood of local communities. At TRG, we also have many corporate social responsibility (CSR) activities that involve our employees and their families to create positive changes in society”, Mr. Pham Hong Thai, Deputy Management Director, TRG International said.
+          address: 30 Đường Bờ Bao Tân Thắng, Sơn Kỳ, Tân Phú, Thành phố Hồ Chí Minh
+          location:
+            lat: 0.7708351
+            long: 106.5733734
+          organizerID: 651d3d9ba4e4a956761ec228
+        - _id: 651d42afa4e4a95676215752
+          name: Environmental Volunteerism on the Rise in Vietnam
+          startDate: 2023-10-22T16:00:00.000Z
+          endDate: 2023-10-25T16:00:00.000Z
+          description: Vietnam’s rapid development from one of the five poorest countries in the world in 1985 to one of the world’s fastest-growing economies has resulted in dramatic environmental consequences from polluted rivers, biodiversity loss, and air quality depletion. Climate and disaster risks are widely viewed as a direct threat to Vietnam’s aspiration to become a high-income economy. This is especially true in the nation’s deltas from the Red River to the Mekong. The nation is one of the most hazard-prone countries in the Asia Pacific region. With an extensive coastline stretching over 2025 miles, citizens are regularly exposed to severe storms, cyclones, typhoons, floods, landslides, and coastal erosion.
+          address: 413 Chiến Lược, Bình Trị Đông A, Bình Tân, Thành phố Hồ Chí Minh
+          location:
+            lat: 10.7608415
+            long: 106.6049065
+          organizerID: 651d3d9ba4e4a956761ec226
+        - _id: 651d42afa4e4a95676215753
+          name: CLEAN UP THE WORLD
+          startDate: 2023-10-22T16:00:00.000Z
+          endDate: 2023-10-25T16:00:00.000Z
+          description: Clean Up the World was established in 1993 and is one of the largest community-based environmental programs in the world. We unite community groups, schools, businesses, and local governments to carry out activities that address local environmental issues. We provide expertise, support and guidance to members in 130 countries across the world. Our vision is to inspire all people across all continents to tread lightly, clean up and conserve the planet.Join us a global effort to combat waste and plastic pollution. You can register a Clean Up the World activity at any time of the year
+          address: 883 TL10, Bình Trị Đông B, Bình Tân, Thành phố Hồ Chí Minh 700000, Vietnam
+          location:
+            lat: 10.7557946
+            long: 106.5678225
+          organizerID: 651d3d9ba4e4a956761ec227
+    ListNearbyActivityResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          _id:
+            type: string
+          name:
+            type: string
+          startDate:
+            type: string
+          endDate:
+            type: string
+          description:
+            type: string
+          address:
+            type: string
+          location:
+            type: object
+            properties:
+              lat:
+                type: number
+              long:
+                type: number
+          organizerID:
+            type: string
+      example:
+        - _id: 651d42afa4e4a95676215754,
+          name: TRG Gives Hands To The WWF’s Tree Planting Project
+          startDate: 2023-11-11T16:00:00.000Z
+          endDate: 2023-11-14T16:00:00.000Z
+          description: “This project is among community efforts that seek to mitigate the impact of climate change. Planting tree is recognized as powerful tools in minimizing the effects. By joining the project, we are happy to give more hand to improve the environment and support the livelihood of local communities. At TRG, we also have many corporate social responsibility (CSR) activities that involve our employees and their families to create positive changes in society”, Mr. Pham Hong Thai, Deputy Management Director, TRG International said.
+          address: 30 Đường Bờ Bao Tân Thắng, Sơn Kỳ, Tân Phú, Thành phố Hồ Chí Minh
+          location:
+            lat: 0.7708351
+            long: 106.5733734
+          organizerID: 651d3d9ba4e4a956761ec228
+          distance: 12.012830
+        - _id: 651d42afa4e4a95676215752
+          name: Environmental Volunteerism on the Rise in Vietnam
+          startDate: 2023-10-22T16:00:00.000Z
+          endDate: 2023-10-25T16:00:00.000Z
+          description: Vietnam’s rapid development from one of the five poorest countries in the world in 1985 to one of the world’s fastest-growing economies has resulted in dramatic environmental consequences from polluted rivers, biodiversity loss, and air quality depletion. Climate and disaster risks are widely viewed as a direct threat to Vietnam’s aspiration to become a high-income economy. This is especially true in the nation’s deltas from the Red River to the Mekong. The nation is one of the most hazard-prone countries in the Asia Pacific region. With an extensive coastline stretching over 2025 miles, citizens are regularly exposed to severe storms, cyclones, typhoons, floods, landslides, and coastal erosion.
+          address: 413 Chiến Lược, Bình Trị Đông A, Bình Tân, Thành phố Hồ Chí Minh
+          location:
+            lat: 10.7608415
+            long: 106.6049065
+          organizerID: 651d3d9ba4e4a956761ec226
+          distance: 22.012830
+        - _id: 651d42afa4e4a95676215753
+          name: CLEAN UP THE WORLD
+          startDate: 2023-10-22T16:00:00.000Z
+          endDate: 2023-10-25T16:00:00.000Z
+          description: Clean Up the World was established in 1993 and is one of the largest community-based environmental programs in the world. We unite community groups, schools, businesses, and local governments to carry out activities that address local environmental issues. We provide expertise, support and guidance to members in 130 countries across the world. Our vision is to inspire all people across all continents to tread lightly, clean up and conserve the planet.Join us a global effort to combat waste and plastic pollution. You can register a Clean Up the World activity at any time of the year
+          address: 883 TL10, Bình Trị Đông B, Bình Tân, Thành phố Hồ Chí Minh 700000, Vietnam
+          location:
+            lat: 10.7557946
+            long: 106.5678225
+          organizerID: 651d3d9ba4e4a956761ec227
+          distance: 30.0128234230

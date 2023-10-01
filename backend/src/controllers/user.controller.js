@@ -1,44 +1,140 @@
-const programmingLanguages = require("../services/programmingLanguages.service");
+import User from "../models/user.js";
+import returnMyProflie from "../utils/returnMyProflie.js";
+import nearby from "../utils/nearby.js";
 
-async function get(req, res, next) {
+const createUser = (req, res) => {
+  const location = {
+    lat: req.body.location.lat,
+    long: req.body.location.long,
+  };
+  const user = new User({
+    userID: req.body.userID,
+    name: req.body.name,
+    email: req.body.email,
+    address: req.body.address,
+    location: location,
+    isOrganizer: false,
+  });
+
   try {
-    res.json(await programmingLanguages.getMultiple(req.query.page));
+    user
+      .save()
+      .then((us) => {
+        res.status(200).json(us);
+      })
+      .catch((err) => {
+        res.status(404).json({ message: err.message });
+      });
   } catch (err) {
-    console.error(`Error while getting programming languages`, err.message);
-    next(err);
+    res.status(404).json({
+      success: false,
+      message: err.message,
+    });
   }
-}
-
-async function create(req, res, next) {
-  try {
-    res.json(await programmingLanguages.create(req.body));
-  } catch (err) {
-    console.error(`Error while creating programming language`, err.message);
-    next(err);
-  }
-}
-
-async function update(req, res, next) {
-  try {
-    res.json(await programmingLanguages.update(req.params.id, req.body));
-  } catch (err) {
-    console.error(`Error while updating programming language`, err.message);
-    next(err);
-  }
-}
-
-async function remove(req, res, next) {
-  try {
-    res.json(await programmingLanguages.remove(req.params.id));
-  } catch (err) {
-    console.error(`Error while deleting programming language`, err.message);
-    next(err);
-  }
-}
-
-module.exports = {
-  get,
-  create,
-  update,
-  remove,
 };
+
+const getUser = (req, res) => {
+  try {
+    const usID = req.params.userid;
+    User.findById(usID)
+      .exec()
+      .then((user) => {
+        res.status(200).json(user);
+      })
+      .catch((err) => {
+        res.status(404).json({
+          success: false,
+          error: err,
+        });
+      });
+  } catch (er) {
+    res.status(404).json({
+      success: false,
+      error: er.message,
+    });
+  }
+};
+
+const findBuddy = (req, res) => {
+  try {
+    const userId = req.params.id;
+    let currentUser;
+    returnMyProflie(userId)
+      .then((user) => {
+        currentUser = user;
+        return User.find({});
+      })
+      .then((listUsers) => {
+        let listBuddy = nearby(listUsers, currentUser);
+        res.status(200).json(listBuddy);
+      })
+      .catch((err) => {
+        res.status(404).json({
+          success: false,
+          error: err,
+        });
+      });
+  } catch (er) {
+    res.status(404).json({
+      success: false,
+      error: er.message,
+    });
+  }
+};
+
+const registerActivity = (req, res) => {
+  const activity = {
+    activityId: req.body.activityId,
+    joinDate: new Date(),
+    status: 0,
+  };
+  try {
+    User.findById(req.params.userid)
+      .then((userRegister) => {
+        // console.log(userRegister);
+        if (userRegister.activities.length < 1) {
+          userRegister.activities = [activity];
+        } else {
+          userRegister.activities.push(activity);
+        }
+        userRegister.save();
+        return userRegister;
+      })
+      .then((user) => {
+        res.status(200).json(user);
+      })
+      .catch((err) => {
+        res.status(404).json({ message: err.message });
+      });
+  } catch (err) {
+    res.status(404).json({ message: err.message });
+  }
+};
+
+const markDoneActivity = (req, res) => {
+  const actId = req.body.activityId;
+  try {
+    User.findById(req.params.userid)
+      .then((user) => {
+        user.activities.forEach((element) => {
+          if (element.activityId == actId) {
+            element.status = 1;
+          }
+        });
+        user.save();
+        return user;
+      })
+      .then((user) => {
+        res.status(200).json(user);
+      })
+      .catch((err) => {
+        res.status(404).json({ message: err });
+      });
+  } catch (err) {
+    res.status(404).json({ message: err });
+  }
+};
+
+// const addBuddy = (req, res) => {};
+
+export { createUser, getUser, findBuddy, registerActivity, markDoneActivity };

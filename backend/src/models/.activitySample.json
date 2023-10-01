@@ -1,0 +1,41 @@
+[
+  {
+    "_id": "651d42afa4e4a95676215752",
+    "name": "Environmental Volunteerism on the Rise in Vietnam",
+    "startDate": "2023-10-22T16:00:00Z",
+    "endDate": "2023-10-25T16:00:00Z",
+    "description": "Vietnam’s rapid development from one of the five poorest countries in the world in 1985 to one of the world’s fastest-growing economies has resulted in dramatic environmental consequences from polluted rivers, biodiversity loss, and air quality depletion. Climate and disaster risks are widely viewed as a direct threat to Vietnam’s aspiration to become a high-income economy. This is especially true in the nation’s deltas from the Red River to the Mekong. The nation is one of the most hazard-prone countries in the Asia Pacific region. With an extensive coastline stretching over 2025 miles, citizens are regularly exposed to severe storms, cyclones, typhoons, floods, landslides, and coastal erosion.",
+    "address": "413 Chiến Lược, Bình Trị Đông A, Bình Tân, Thành phố Hồ Chí Minh",
+    "location": {
+      "lat": "10.7608415",
+      "long": "106.6049065"
+    },
+    "organizerID": "651d3d9ba4e4a956761ec226"
+  },
+  {
+    "_id": "651d42afa4e4a95676215753",
+    "name": "CLEAN UP THE WORLD",
+    "startDate": "2023-10-22T16:00:00Z",
+    "endDate": "2023-10-25T16:00:00Z",
+    "description": "Clean Up the World was established in 1993 and is one of the largest community-based environmental programs in the world. We unite community groups, schools, businesses, and local governments to carry out activities that address local environmental issues. We provide expertise, support and guidance to members in 130 countries across the world. Our vision is to inspire all people across all continents to tread lightly, clean up and conserve the planet.Join us a global effort to combat waste and plastic pollution. You can register a Clean Up the World activity at any time of the year",
+    "address": "883 TL10, Bình Trị Đông B, Bình Tân, Thành phố Hồ Chí Minh 700000, Vietnam",
+    "location": {
+      "lat": "10.7557946",
+      "long": "106.5678225"
+    },
+    "organizerID": "651d3d9ba4e4a956761ec227"
+  },
+  {
+    "_id": "651d42afa4e4a95676215754",
+    "name": "TRG Gives Hands To The WWF’s Tree Planting Project",
+    "startDate": "2023-11-11T16:00:00Z",
+    "endDate": "2023-11-14T16:00:00Z",
+    "description": "“This project is among community efforts that seek to mitigate the impact of climate change. Planting tree is recognized as powerful tools in minimizing the effects. By joining the project, we are happy to give more hand to improve the environment and support the livelihood of local communities. At TRG, we also have many corporate social responsibility (CSR) activities that involve our employees and their families to create positive changes in society”, Mr. Pham Hong Thai, Deputy Management Director, TRG International said.",
+    "address": "30 Đường Bờ Bao Tân Thắng, Sơn Kỳ, Tân Phú, Thành phố Hồ Chí Minh",
+    "location": {
+      "lat": "0.7708351",
+      "long": "106.5733734"
+    },
+    "organizerID": "651d3d9ba4e4a956761ec228"
+  }
+]
