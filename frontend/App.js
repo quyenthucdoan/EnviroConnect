@@ -1,9 +1,9 @@
-import * as React from "react"
 import { FontAwesome } from "@expo/vector-icons"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { NavigationContainer } from "@react-navigation/native"
-import { theme } from "./tailwind.config.js"
+import * as React from "react"
 import HomeScreen from "./src/screens/HomeScreen.js"
+import { theme } from "./tailwind.config.js"
 
 const Tab = createBottomTabNavigator()
 
@@ -12,7 +12,7 @@ export default function App() {
 		Home: "home",
 	}
 	return (
-		<NavigationContainer>
+		<NavigationContainer initialRouteName="Home">
 			<Tab.Navigator
 				screenOptions={({ route }) => ({
 					tabBarIcon: ({ color, size }) => (
