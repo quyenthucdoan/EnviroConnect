@@ -1,10 +1,11 @@
-import { TouchableOpacity, Text } from "react-native"
+import { Text, TouchableOpacity } from "react-native"
 
-const PrimaryButton = ({ title, onPress }) => {
+const PrimaryButton = ({ style, title, onPress }) => {
 	return (
 		<TouchableOpacity
-			className="bg-primary-darker rounded-lg px-14 py-4"
+			className="bg-primary-normal py-2 rounded-primary"
 			onPress={onPress}
+			style={style}
 		>
 			<Text className="font-bold text-white">{title}</Text>
 		</TouchableOpacity>

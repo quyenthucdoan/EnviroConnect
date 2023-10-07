@@ -15,7 +15,7 @@ module.exports = {
 			},
 			cloud: {
 				normal: "#E8EDF1",
-			}
+			},
 		},
 		fontSize: {
 			title1: [
