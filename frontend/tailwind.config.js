@@ -14,6 +14,7 @@ module.exports = {
 				lighter: "#ECF8F7",
 			},
 			cloud: {
+				light: '#F5F7F9',
 				normal: "#E8EDF1",
 			},
 			ink: {
