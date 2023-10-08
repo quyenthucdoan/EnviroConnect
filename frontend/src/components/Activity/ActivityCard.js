@@ -1,4 +1,5 @@
 import { AntDesign, Feather, Ionicons } from "@expo/vector-icons"
+import { useNavigation } from "@react-navigation/native"
 import React from "react"
 import { Text, TouchableOpacity, View } from "react-native"
 import PrimaryButton from "../Button/PrimaryButton"
@@ -11,10 +12,13 @@ const ActivityCard = ({
 	start,
 	end,
 	current,
-	max,
+	max
 }) => {
+	const navigation = useNavigation();
+
 	return (
-		<TouchableOpacity className="flex gap-y-2 bg-white rounded-primary px-6 pt-4 pb-6">
+		<TouchableOpacity className="flex gap-y-2 bg-white rounded-primary px-6 pt-4 pb-6"
+			onPress={() => navigation.push('DetailScreen')}>
 			<View className="flex flex-row justify-between items-start">
 				<View className="gap-y-2 ">
 					<Text className="font-bold text-lg">{title}</Text>
