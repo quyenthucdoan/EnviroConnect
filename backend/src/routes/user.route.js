@@ -9,7 +9,7 @@ import {
 } from "../controllers/user.controller.js";
 
 /* Create user*/
-router.post("create-user", createUser);
+router.post("/create-user", createUser);
 
 /* Get User */
 router.get("/:id", getUser);
@@ -21,9 +21,9 @@ router.get("/:id/near-buddies", findBuddy);
 // router.get("/users/:id/friends", listFriends);
 
 /* Register activity  for user*/
-router.put("/:id/added-activity", registerActivity);
+router.put("/:userid/added-activity", registerActivity);
 
 /* Completed an activity*/
-router.put("/:id/done-activity", markDoneActivity);
+router.put("/:userid/done-activity", markDoneActivity);
 
 export default router;

@@ -4,8 +4,8 @@ info:
   description: API documentation for IMA EnviroConnect
   version: 1.0.0
 servers:
-  - url: http://103.200.20.117:5000
-  - url: http://localhost:5000
+  - url: http://103.200.20.117:5500
+  - url: http://localhost:5500
 tags:
   - name: users
     description: External APIs for users
