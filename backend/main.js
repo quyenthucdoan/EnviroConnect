@@ -14,6 +14,7 @@ connectDB(process.env.MONGODB_URI);
 // app.use(express.json());
 app.use(bodyParser.json());
 const urlencodedParser = bodyParser.urlencoded({ extended: true });
+app.use(express.static("public"));
 app.use("/api/users", userRoute);
 app.use("/api/activities", activityRoute);
 app.use("/api/organizers", organizerRoute);
