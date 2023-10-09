@@ -7,12 +7,12 @@ const locationSchema = mongoose.Schema({
 });
 
 const activitySchema = new Schema({
-  _id: {
-    type: mongoose.Schema.Types.ObjectId,
-    index: true,
-    required: true,
-    auto: true,
-  },
+  // _id: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   // index: true,
+  //   required: true,
+  //   auto: true,
+  // },
   name: String,
   startDate: Date,
   endDate: Date,

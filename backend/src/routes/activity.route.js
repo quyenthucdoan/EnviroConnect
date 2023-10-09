@@ -7,15 +7,15 @@ import {
   createActivity,
 } from "../controllers/activity.controller.js";
 
-router.post("/activities/create-activity", createActivity);
+router.post("/create-activity", createActivity);
 
 /* Get 1 activity*/
-router.get("/activities/:id", getAnActivity);
+router.get("/:id", getAnActivity);
 
 /* Get all activity*/
-router.get("/activities/", getAllActivity);
+router.get("/", getAllActivity);
 
 /* Find nearby activity Buddy */
-router.get("/activities/:id/user", listNearbyActivity);
+router.get("/:id/user", listNearbyActivity);
 
 export default router;

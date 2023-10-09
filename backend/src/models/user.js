@@ -13,12 +13,12 @@ const joinedActivitiesSchema = new Schema({
 });
 
 const userSchema = new Schema({
-  _id: {
-    type: mongoose.Schema.Types.ObjectId,
-    index: true,
-    required: true,
-    auto: true,
-  },
+  // _id: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   // index: true,
+  //   required: true,
+  //   auto: true,
+  // },
   name: String,
   email: String,
   address: String,
@@ -27,6 +27,6 @@ const userSchema = new Schema({
   activities: [joinedActivitiesSchema],
 });
 
-const User = mongoose.model("user", userSchema);
+const User = mongoose.model("User", userSchema);
 
 export default User;

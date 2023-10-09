@@ -9,21 +9,21 @@ import {
 } from "../controllers/user.controller.js";
 
 /* Create user*/
-router.post("/users/create-user", createUser);
+router.post("create-user", createUser);
 
 /* Get User */
-router.get("/users/:id", getUser);
+router.get("/:id", getUser);
 
 /* Find friends near you */
-router.get("/users/:id/near-buddies", findBuddy);
+router.get("/:id/near-buddies", findBuddy);
 
 /* Return all your friends*/
 // router.get("/users/:id/friends", listFriends);
 
 /* Register activity  for user*/
-router.put("/users/:id/added-activity", registerActivity);
+router.put("/:id/added-activity", registerActivity);
 
 /* Completed an activity*/
-router.put("/users/:id/done-activity", markDoneActivity);
+router.put("/:id/done-activity", markDoneActivity);
 
 export default router;

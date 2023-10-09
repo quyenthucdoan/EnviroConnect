@@ -36,7 +36,6 @@ const createUser = (req, res) => {
 const getUser = (req, res) => {
   try {
     const usID = req.params.id;
-    console.log(usID);
     User.findById(usID)
       .exec()
       .then((user) => {

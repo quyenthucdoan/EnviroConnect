@@ -1,25 +1,20 @@
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
-import connectDB from "./src/models/index.js";
-import { DEFAULT_PORT } from "./src/configs/general.config.js";
+import connectDB from "./src/configs/db.config";
 import userRoute from "./src/routes/user.route.js";
 import activityRoute from "./src/routes/activity.route.js";
-
-connectDB();
+import dotenv from "dotenv";
+dotenv.config();
+const port = process.env.PORT || 5000;
 const app = express();
-app.use(cors());
-app.use(express.json());
-app.use(bodyParser.text());
+connectDB(process.env.MONGODB_URI);
+// app.use(cors());
+// app.use(express.json());
+app.use(bodyParser.json());
 const urlencodedParser = bodyParser.urlencoded({ extended: true });
-
-app.use(userRoute);
-app.use(activityRoute);
-
-app.get("/", (req, res) => {
-  res.send("Server!!!!");
-});
-
-app.listen(DEFAULT_PORT, () => {
-  console.log("App is listening on port ", DEFAULT_PORT);
+app.use('/api/users',userRoute);
+app.use('/api/activities',activityRoute);
+app.listen(port, () => {
+  console.log("Backend is listening on port ", port);
 });
