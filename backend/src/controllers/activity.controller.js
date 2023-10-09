@@ -1,8 +1,7 @@
 import Activity from "../models/activity.js";
+import Organizer from "../models/organizer.js";
 import returnMyProflie from "../utils/returnMyProflie.js";
 import nearby from "../utils/nearby.js";
-
-
 
 const createActivity = (req, res) => {
   const location = {
@@ -66,7 +65,7 @@ const getAllActivity = (req, res) => {
 
 const listNearbyActivity = (req, res) => {
   try {
-    const userId = req.params.id;
+    const userId = req.params.userid;
     let currentUser;
     returnMyProflie(userId)
       .then((currUser) => {

@@ -24,9 +24,11 @@ const userSchema = new Schema({
   address: String,
   location: locationSchema,
   isOrganizer: Boolean,
+  description: String,
   activities: [joinedActivitiesSchema],
+  buddy: [{ type: Schema.Types.ObjectId, ref: "user" }],
 });
 
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model("user", userSchema);
 
 export default User;

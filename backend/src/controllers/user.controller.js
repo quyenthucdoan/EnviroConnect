@@ -8,7 +8,7 @@ const createUser = (req, res) => {
     long: req.body.location.long,
   };
   const user = new User({
-    userID: req.body.userID,
+    // userID: req.body.userID,
     name: req.body.name,
     email: req.body.email,
     address: req.body.address,
@@ -89,9 +89,14 @@ const registerActivity = (req, res) => {
     status: 0,
   };
   try {
-    User.findById(req.params.id)
+    User.findById(req.params.userid)
       .then((userRegister) => {
+           // console.log(userRegister);
+           if (userRegister.activities.length < 1) {
+            userRegister.activities = [activity];
+          } else {
         userRegister.activities.push(activity);
+          }
         userRegister.save();
         return userRegister;
       })
@@ -99,17 +104,17 @@ const registerActivity = (req, res) => {
         res.status(200).json(user);
       })
       .catch((err) => {
-        res.status(404).json({ message: err });
+        res.status(404).json({ message: err.message });
       });
   } catch (err) {
-    res.status(404).json({ message: err });
+    res.status(404).json({ message: err.message });
   }
 };
 
 const markDoneActivity = (req, res) => {
   const actId = req.body.activityId;
   try {
-    User.findById(req.params.id)
+    User.findById(req.params.userid)
       .then((user) => {
         user.activities.forEach((element) => {
           if (element.activityId == actId) {

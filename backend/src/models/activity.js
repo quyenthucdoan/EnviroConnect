@@ -19,7 +19,7 @@ const activitySchema = new Schema({
   description: String,
   address: String,
   location: locationSchema,
-  organizerID: Schema.ObjectId,
+  organizerID: { type: Schema.Types.ObjectId, ref: "organizer" },
 });
 
 const Activity = mongoose.model("activity", activitySchema);
