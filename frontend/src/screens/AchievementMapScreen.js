@@ -42,10 +42,9 @@ const AchievementMapScreen = () => {
 					data={teams}
 					keyExtractor={(_, i) => i}
 					renderItem={({ item }) => (
-						<View className="my-4">
-							<AchievementCard {...item} />
-						</View>
+						<AchievementCard {...item} />
 					)}
+					ItemSeparatorComponent={() => <View className="mx-6 bg-gray h-[1]" />}
 				/>
 			</BottomSheet>
 		</Layout>

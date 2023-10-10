@@ -14,12 +14,12 @@ module.exports = {
 				lighter: "#ECF8F7",
 			},
 			cloud: {
-				light: '#F5F7F9',
+				light: "#F5F7F9",
 				normal: "#E8EDF1",
 			},
 			ink: {
 				light: "#4A617C",
-			}
+			},
 		},
 		extend: {
 			fontSize: {
@@ -32,30 +32,30 @@ module.exports = {
 				normal: [
 					"18px",
 					{
-						lineHeight: "20px"
-					}
+						lineHeight: "20px",
+					},
 				],
 				xsmall: [
 					"12px",
 					{
-						lineHeight: "16px"
-					}
+						lineHeight: "16px",
+					},
 				],
 				small: [
 					"14px",
 					{
-						lineHeight: "18px"
-					}
-				]
+						lineHeight: "18px",
+					},
+				],
 			},
 			borderRadius: {
 				primary: "12px",
 				normal: "4px",
-				medium: "8px"
+				medium: "8px",
 			},
 			borderWidth: {
-				primary: "1.5px"
-			}
+				primary: "1.5px",
+			},
 		},
 	},
 	plugins: [],
