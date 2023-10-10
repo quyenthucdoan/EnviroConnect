@@ -5,7 +5,7 @@ const BadgeCustom = ({ value, onPress, style, styleText }) => {
 	return (
 		<TouchableOpacity
             onPress= { onPress }
-            className={"bg-primary-lighter mr-2 rounded-normal px-2" + style}
+            className={"bg-primary-lighter mr-2 rounded-normal px-2 " + style}
         >
             <Text className='text-center text-primary-darker' style={ styleText }>
 			    {value}

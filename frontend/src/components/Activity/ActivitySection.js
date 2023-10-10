@@ -1,4 +1,4 @@
-import { Entypo, Feather } from "@expo/vector-icons"
+import { Ionicons, Feather } from "@expo/vector-icons"
 import { useNavigation } from "@react-navigation/native"
 import { useState } from "react"
 import { FlatList, Text, TouchableOpacity, View } from "react-native"
@@ -26,8 +26,8 @@ const ActivitySection = () => {
 				</TouchableOpacity>
 			</View>
 			<View className="flex flex-row items-center">
-				<Entypo name="location-pin" size={18} color="black" />
-				<Text>Find activities near you</Text>
+				<Ionicons name="location" size={18} color="#009580" />
+				<Text className='text-ink-light'> Find activities near you</Text>
 			</View>
 			<FlatList
 				data={categories}

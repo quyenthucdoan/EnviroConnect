@@ -7,9 +7,9 @@ const SocialPoint = ({ name, number }) => {
 		<View className="flex-row gap-x-2 rounded-primary items-center">
 			<Text className="text-title2 font-bold">{name}</Text>
 			<View className="flex-row items-center">
-				<Text className="text-primary-normal">{number}</Text>
+				<Text className="text-primary-normal">{number} </Text>
 				<FontAwesome
-					name="envira"
+					name="tree"
 					size={16}
 					color={theme.colors.primary.normal}
 				/>

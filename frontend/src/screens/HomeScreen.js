@@ -46,7 +46,7 @@ const HomeScreen = ({ navigation }) => {
 						</View>
 					</View>
 				</Section>
-				<Section className="flex-1 mt-4">
+				<Section className="flex-1 mt-5">
 					<ActivitySection />
 				</Section>
 				<Section className="flex-1">

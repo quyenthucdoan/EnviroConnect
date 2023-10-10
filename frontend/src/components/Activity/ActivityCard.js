@@ -5,7 +5,7 @@ import React from "react"
 import { Text, TouchableOpacity, View } from "react-native"
 import useService from "../../hooks/useService"
 import { getUserById } from "../../services/user"
-import PrimaryButton from "../Button/PrimaryButton"
+import FilledButton from "../Button/FilledButton"
 
 const ActivityCard = ({
 	name,
@@ -22,7 +22,7 @@ const ActivityCard = ({
 
 	return (
 		<TouchableOpacity
-			className="flex gap-y-2 bg-white rounded-primary p-6"
+			className="flex gap-y-2 bg-white rounded-primary px-5 pt-3 pb-5"
 			onPress={() => navigation.navigate("DetailScreen")}
 		>
 			<View className="flex flex-row justify-between items-start">
@@ -30,7 +30,7 @@ const ActivityCard = ({
 					<Text className="text-title2 font-bold ">{name}</Text>
 					<Text className="text-primary-darker italic">{organizerID}</Text>
 				</View>
-				<PrimaryButton title="Join" className="px-6" />
+				<FilledButton title="JOIN" className="bg-primary-lighter px-4 py-2" styleText={{ color: "#276831", fontWeight: 500 }} />
 			</View>
 
 			<View className="flex flex-row justify-between">
@@ -39,7 +39,7 @@ const ActivityCard = ({
 			</View>
 			<View className="flex flex-row justify-between ">
 				<View className="flex flex-row items-center gap-x-1">
-					<Ionicons name="calendar-sharp" size={14} color="black" />
+					<Ionicons name="calendar-sharp" size={14} color="#3E4E63" />
 					<Text className="text-xs">
 						{moment(startDate).utc().format("ddd, MMM DD")}
 					</Text>
