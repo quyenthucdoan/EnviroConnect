@@ -1,18 +1,17 @@
 import mongoose from "mongoose";
 const { Schema } = mongoose;
 
-const locationSchema = mongoose.Schema({
+const locationSchema = new Schema({
   lat: Number,
   long: Number,
 });
 
 const activitySchema = new Schema({
-  // _id: {
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   // index: true,
-  //   required: true,
-  //   auto: true,
-  // },
+  _id: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    auto: true,
+  },
   name: String,
   startDate: Date,
   endDate: Date,
@@ -20,6 +19,12 @@ const activitySchema = new Schema({
   address: String,
   location: locationSchema,
   organizerID: { type: Schema.Types.ObjectId, ref: "organizer" },
+  joinedUser: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "user",
+    },
+  ],
 });
 
 const Activity = mongoose.model("activity", activitySchema);

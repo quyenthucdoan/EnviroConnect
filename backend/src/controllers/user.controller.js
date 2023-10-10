@@ -1,4 +1,5 @@
 import User from "../models/user.js";
+import Activity from "../models/activity.js";
 import returnMyProflie from "../utils/returnMyProflie.js";
 import nearby from "../utils/nearby.js";
 
@@ -83,25 +84,20 @@ const findBuddy = (req, res) => {
 };
 
 const registerActivity = (req, res) => {
+  const userId = req.params.userid;
+  const activityId = req.body.activityId;
   const activity = {
-    activityId: req.body.activityId,
+    activityId: activityId,
     joinDate: new Date(),
     status: 0,
   };
   try {
-    User.findById(req.params.userid)
-      .then((userRegister) => {
-           // console.log(userRegister);
-           if (userRegister.activities.length < 1) {
-            userRegister.activities = [activity];
-          } else {
-        userRegister.activities.push(activity);
-          }
-        userRegister.save();
-        return userRegister;
-      })
-      .then((user) => {
-        res.status(200).json(user);
+    Promise.all([
+      User.findByIdAndUpdate(userId, { $push: { activities: activity } }),
+      Activity.findByIdAndUpdate(activityId, { $push: { joinedUser: userId } }),
+    ])
+      .then(([user, activity]) => {
+        res.status(200).json({ status: "success", user: user, act: activity });
       })
       .catch((err) => {
         res.status(404).json({ message: err.message });

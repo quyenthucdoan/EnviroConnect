@@ -1,5 +1,5 @@
 import Activity from "../models/activity.js";
-import Organizer from "../models/organizer.js";
+import User from "../models/user.js";
 import returnMyProflie from "../utils/returnMyProflie.js";
 import nearby from "../utils/nearby.js";
 
@@ -16,6 +16,7 @@ const createActivity = (req, res) => {
     address: req.body.address,
     location: location,
     organizerID: req.body.organizerID,
+    joinedUser: [],
   });
   try {
     activity
@@ -37,15 +38,16 @@ const createActivity = (req, res) => {
 const getAnActivity = (req, res) => {
   try {
     Activity.findById(req.params.id)
+      .populate("organizerID")
       .exec()
       .then((act) => {
         res.status(200).json(act);
       })
       .catch((err) => {
-        res.status(404).json({ message: err });
+        res.status(404).json({ message: err.message });
       });
   } catch (err) {
-    res.status(404).json({ message: err });
+    res.status(404).json({ message: err.message });
   }
 };
 

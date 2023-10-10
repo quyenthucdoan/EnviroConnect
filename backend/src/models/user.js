@@ -7,18 +7,16 @@ const locationSchema = new Schema({
 });
 
 const joinedActivitiesSchema = new Schema({
-  activityId: Schema.ObjectId,
+  activityId: { type: Schema.Types.ObjectId, ref: "activity" },
   joinDate: Date,
   status: Number, // 0: not completed; 1: completed
 });
 
+const notificationSchema = new Schema({
+
+})
+
 const userSchema = new Schema({
-  // _id: {
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   // index: true,
-  //   required: true,
-  //   auto: true,
-  // },
   name: String,
   email: String,
   address: String,
@@ -27,6 +25,10 @@ const userSchema = new Schema({
   description: String,
   activities: [joinedActivitiesSchema],
   buddy: [{ type: Schema.Types.ObjectId, ref: "user" }],
+  // belongto:{
+
+  // }
+  notification:[]
 });
 
 const User = mongoose.model("user", userSchema);

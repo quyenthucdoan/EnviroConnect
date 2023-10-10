@@ -1,5 +1,4 @@
 import express from "express";
-const router = express.Router();
 import {
   createUser,
   getUser,
@@ -7,6 +6,7 @@ import {
   registerActivity,
   markDoneActivity,
 } from "../controllers/user.controller.js";
+const router = express.Router();
 
 /* Create user*/
 router.post("/create-user", createUser);
