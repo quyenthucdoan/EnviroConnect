@@ -12,5 +12,8 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^8.2.1"
+  },
+  "dependencies": {
+    "react-native-ratings": "^8.1.0"
   }
 }

@@ -3,7 +3,7 @@ import { Text, TouchableOpacity } from "react-native"
 const PrimaryButton = ({ style, children, title, onPress }) => {
 	return (
 		<TouchableOpacity
-			className="bg-primary-normal py-2 rounded-primary"
+			className="bg-primary-normal py-2 rounded-medium"
 			onPress={onPress}
 			style={style}
 		>

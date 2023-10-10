@@ -11,9 +11,9 @@ const Tab = createBottomTabNavigator()
 
 const MainNavigator = () => {
 	const routes = {
-		HomeNavigator: "home",
-		SearchNavigator: "search",
-		AchievementNavigator: "map",
+		Home: "home",
+		Search: "search",
+		Achievement: "map",
 	}
 	return (
 		<NavigationContainer initialRouteName="HomeNavigator">
@@ -27,12 +27,9 @@ const MainNavigator = () => {
 					headerShown: false,
 				})}
 			>
-				<Tab.Screen name="HomeNavigator" component={HomeNavigator} />
-				<Tab.Screen name="SearchNavigator" component={SearchScreen} />
-				<Tab.Screen
-					name="AchievementNavigator"
-					component={AchievementMapScreen}
-				/>
+				<Tab.Screen name="Home" component={HomeNavigator} />
+				<Tab.Screen name="Search" component={SearchScreen} />
+				<Tab.Screen name="Achievement" component={AchievementMapScreen} />
 			</Tab.Navigator>
 		</NavigationContainer>
 	)
