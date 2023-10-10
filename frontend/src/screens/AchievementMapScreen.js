@@ -1,10 +1,10 @@
+import BottomSheet, { BottomSheetFlatList } from "@gorhom/bottom-sheet"
+import { useMemo, useRef } from "react"
 import { View } from "react-native"
 import AchievementCard from "../components/Achievement/AchievementCard"
 import CustomTextInput from "../components/Input/CustomTextInput"
 import Layout from "../components/Layout/Layout"
-import VerticalList from "../components/List/VerticalList"
 import Map from "../components/Map/Map"
-
 const teams = [
 	{
 		name: "Alex",
@@ -30,32 +30,24 @@ const teams = [
 ]
 
 const AchievementMapScreen = () => {
+	const sheetRef = useRef(null)
+
+	const snapPoints = useMemo(() => ["25%", "50%", "90%"], [])
 	return (
 		<Layout>
 			<Map></Map>
-			<View
-				className="w-screen bg-white h-2/5"
-				style={{ position: "absolute", bottom: "0%", left: "0%", zIndex: 10 }}
-			>
-				<CustomTextInput placeholder={"What do you want to do today?"} />
-				<VerticalList
-					Card={AchievementCard}
+			<BottomSheet ref={sheetRef} snapPoints={snapPoints}>
+				<CustomTextInput placeholder={"Search your team"} />
+				<BottomSheetFlatList
 					data={teams}
-					scrollEnabled={true}
-					ItemSeparatorComponent={() => (
-						<View
-							className="w-5/6 h-[1] bg-gray-300"
-							style={{
-								height: 0.5,
-								width: "90%",
-								backgroundColor: "#A7ADB7",
-								margin: "auto",
-								display: "flex",
-							}}
-						/>
+					keyExtractor={(_, i) => i}
+					renderItem={({ item }) => (
+						<View className="my-4">
+							<AchievementCard {...item} />
+						</View>
 					)}
 				/>
-			</View>
+			</BottomSheet>
 		</Layout>
 	)
 }

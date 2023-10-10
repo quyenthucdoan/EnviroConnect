@@ -16,20 +16,13 @@ const buddies = [
 		activities: "Plant for future",
 		point: 20,
 	},
-	{
-		username: "Planting for future",
-		city: "Vietnam Women’s Union",
-		point: "Đ. Võ Thị Sáu, Quận 1",
-		activities: "Plant for future",
-		point: 20,
-	},
 ]
 
 const BuddySection = () => {
 	return (
 		<>
-			<Text className="text-title1">Buddies Suggestion</Text>
-			<VerticalList Card={BuddyCard} data={buddies} />
+			<Text className="text-title1 font-bold">Buddies Suggestion</Text>
+			<VerticalList Item={BuddyCard} data={buddies} />
 		</>
 	)
 }

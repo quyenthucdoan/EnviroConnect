@@ -34,14 +34,17 @@ const Map = ({ markers }) => {
 			}}
 			zoomEnabled={true}
 		>
-			<Marker
-				coordinate={{
-					latitude: location?.coords?.latitude,
-					longitude: location?.coords?.longitude,
-				}}
-			>
-				<ActivityMarker name="tree-outline" />
-			</Marker>
+			{markers?.map((marker, index) => (
+				<Marker
+					key={index}
+					coordinate={{
+						latitude: marker?.lat,
+						longitude: marker?.long,
+					}}
+				>
+					<ActivityMarker name="tree-outline" team={false} />
+				</Marker>
+			))}
 		</MapView>
 	)
 }

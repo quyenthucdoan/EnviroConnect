@@ -29,7 +29,10 @@ const MainNavigator = () => {
 			>
 				<Tab.Screen name="HomeNavigator" component={HomeNavigator} />
 				<Tab.Screen name="SearchNavigator" component={SearchScreen} />
-				<Tab.Screen name="AchievementNavigator" component={AchievementMapScreen} />
+				<Tab.Screen
+					name="AchievementNavigator"
+					component={AchievementMapScreen}
+				/>
 			</Tab.Navigator>
 		</NavigationContainer>
 	)

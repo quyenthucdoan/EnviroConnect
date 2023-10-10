@@ -1,11 +1,19 @@
 import { FontAwesome } from "@expo/vector-icons"
 import { Text, View } from "react-native"
+import { theme } from "../../../tailwind.config"
 
-const SocialPoint = ({ number }) => {
+const SocialPoint = ({ name, number }) => {
 	return (
-		<View className="flex-row bg-primary-lighter px-4 py-2 gap-x-2 rounded-primary">
-			<Text>{number}</Text>
-			<FontAwesome name="envira" size={16} color="black" />
+		<View className="flex-row gap-x-2 rounded-primary items-center">
+			<Text className="text-title2 font-bold">{name}</Text>
+			<View className="flex-row items-center">
+				<Text className="text-primary-normal">{number}</Text>
+				<FontAwesome
+					name="envira"
+					size={16}
+					color={theme.colors.primary.normal}
+				/>
+			</View>
 		</View>
 	)
 }

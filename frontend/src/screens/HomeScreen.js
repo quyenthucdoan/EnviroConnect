@@ -8,7 +8,7 @@ import Section from "../components/Layout/Section"
 const HomeScreen = ({ navigation }) => {
 	return (
 		<Layout statusBarBgColor={theme.colors.primary.darker}>
-			<ScrollView>
+			<ScrollView refreshing={false}>
 				<Section className="flex-1">
 					<View className="w-screen h-2/3	bg-primary-darker absolute" />
 

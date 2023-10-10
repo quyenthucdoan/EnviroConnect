@@ -18,12 +18,8 @@ module.exports = {
 			},
 		},
 		fontSize: {
-			title1: [
-				"22px",
-				{
-					lineHeight: "28px",
-				},
-			],
+			title1: "22px",
+			title2: "18px",
 		},
 		borderRadius: {
 			primary: "12px",

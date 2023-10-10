@@ -6,22 +6,21 @@ import SocialPoint from "../Other/SocialPoint"
 const BuddyCard = ({ username, city, activities, point }) => {
 	return (
 		<TouchableOpacity className="flex flex-row gap-y-2 bg-white rounded-primary px-6 pt-4 pb-6">
-			<View class="flex-[3_3_0%] gap-y-4">
-				<View className="flex-1 flex-row items-center gap-x-2 mb-2">
+			<View class="flex-[3_3_0%]">
+				<View className="flex-1 flex-row gap-x-2">
 					<Avatar
 						src={{
 							uri: "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
 						}}
 					/>
 					<View>
-						<Text className="font-bold text-lg mb-2">{username}</Text>
-						<Text className="text-primary-darker italic">{city}</Text>
+						<SocialPoint className="flex-1" name={username} number={point} />
+						<Text className="text-primary-darker italic mt-[8px]">{city}</Text>
 					</View>
 				</View>
 				<Text>{activities}</Text>
 			</View>
-			<View className="flex-1 items-end gap-y-2">
-				<SocialPoint className="flex-1" number={point} />
+			<View className="flex-1 items-end">
 				<PrimaryButton title="Connect" className="px-6" />
 			</View>
 		</TouchableOpacity>

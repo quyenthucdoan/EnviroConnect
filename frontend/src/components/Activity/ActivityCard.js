@@ -4,12 +4,12 @@ import { Text, TouchableOpacity, View } from "react-native"
 import PrimaryButton from "../Button/PrimaryButton"
 
 const ActivityCard = ({
-	title,
+	name,
 	organization,
 	address,
 	distance,
-	start,
-	end,
+	startDate,
+	endDate,
 	current,
 	max,
 }) => {
@@ -17,7 +17,7 @@ const ActivityCard = ({
 		<TouchableOpacity className="flex gap-y-2 bg-white rounded-primary px-6 pt-4 pb-6">
 			<View className="flex flex-row justify-between items-start">
 				<View className="gap-y-2 ">
-					<Text className="font-bold text-lg">{title}</Text>
+					<Text className="text-title2 font-bold">{name}</Text>
 					<Text className="text-primary-darker italic">{organization}</Text>
 				</View>
 				<PrimaryButton title="Join" className="px-6" />
@@ -30,9 +30,9 @@ const ActivityCard = ({
 			<View className="flex flex-row justify-between ">
 				<View className="flex flex-row items-center gap-x-1">
 					<Ionicons name="calendar-sharp" size={14} color="black" />
-					<Text className="text-xs">{start}</Text>
+					<Text className="text-xs">{startDate}</Text>
 					<AntDesign name="arrowright" size={10} color="black" />
-					<Text className="text-xs">{end}</Text>
+					<Text className="text-xs">{endDate}</Text>
 				</View>
 				<View className="flex flex-row items-center gap-x-1">
 					<Feather name="users" size={14} color="black" />
