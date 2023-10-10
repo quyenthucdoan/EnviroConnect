@@ -9,7 +9,7 @@ const EventHighLight = ({
 }) => {
     return (
         <View className='bg-white mx-4 rounded-medium shadow-md shadow-ink-light mb-4'>
-            <FlatList horizontal={true} className='mt-4 mb-5 mx-auto'  data={tags} renderItem={({item}) => <BadgeCustom value={item}></BadgeCustom>}
+            <FlatList horizontal={true} className='mt-4 mb-5 mx-auto flex-row'  data={tags} renderItem={({item}) => <BadgeCustom value={item}></BadgeCustom>}
                 >
             </FlatList>
             <Text className='text-center text-title1 font-semibold'>{event.title}</Text>

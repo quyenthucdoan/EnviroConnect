@@ -20,9 +20,9 @@ const Layout = ({ statusBarBgColor, style, children }) => {
 							barStyle="light-content"
 						/>
 					</View>
-					<View
+					{/* <View
 						style={{ height: HEADER_HEIGHT, backgroundColor: statusBarBgColor }}
-					/>
+					/> */}
 				</>
 			)}
 			<View className="flex-1" style={{ gap: 20 }}>

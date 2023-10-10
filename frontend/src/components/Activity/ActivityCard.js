@@ -18,7 +18,7 @@ const ActivityCard = ({
 
 	return (
 		<TouchableOpacity className="flex gap-y-2 bg-white rounded-primary px-6 pt-4 pb-6"
-			onPress={() => navigation.push('DetailScreen')}>
+			onPress={() => navigation.navigate('DetailScreen')}>
 			<View className="flex flex-row justify-between items-start">
 				<View className="gap-y-2 ">
 					<Text className="text-title2 font-bold">{name}</Text>
