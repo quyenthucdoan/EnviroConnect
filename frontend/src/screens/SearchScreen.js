@@ -30,6 +30,7 @@ const SearchScreen = () => {
 							<ActivityCard {...item} />
 						</View>
 					)}
+					ItemSeparatorComponent={() => <View className="mx-6 bg-gray h-[1]" />}
 				/>
 			</BottomSheet>
 		</Layout>

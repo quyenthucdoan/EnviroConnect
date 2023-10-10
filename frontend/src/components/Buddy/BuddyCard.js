@@ -1,12 +1,14 @@
+import { Ionicons } from "@expo/vector-icons"
 import React from "react"
 import { Text, TouchableOpacity, View } from "react-native"
 import PrimaryButton from "../Button/PrimaryButton"
 import Avatar from "../Other/Avatar"
 import SocialPoint from "../Other/SocialPoint"
+
 const BuddyCard = ({ username, city, activities, point }) => {
 	return (
-		<TouchableOpacity className="flex flex-row gap-y-2 bg-white rounded-primary px-6 pt-4 pb-6">
-			<View class="flex-[3_3_0%]">
+		<TouchableOpacity className="gap-2 bg-white rounded-primary p-6">
+			<View className="basis-4/5 flex-row">
 				<View className="flex-1 flex-row gap-x-2">
 					<Avatar
 						src={{
@@ -18,10 +20,13 @@ const BuddyCard = ({ username, city, activities, point }) => {
 						<Text className="text-primary-darker italic mt-[8px]">{city}</Text>
 					</View>
 				</View>
-				<Text>{activities}</Text>
+				<View className="flex-1 items-end">
+					<PrimaryButton title="Connect" className="px-6" />
+				</View>
 			</View>
-			<View className="flex-1 items-end">
-				<PrimaryButton title="Connect" className="px-6" />
+			<View className="flex-row">
+				<Ionicons name="calendar-sharp" size={14} color="black" />
+				<Text>{activities}</Text>
 			</View>
 		</TouchableOpacity>
 	)
