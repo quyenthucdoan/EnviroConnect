@@ -10,7 +10,6 @@ import { useRoute } from "@react-navigation/native"
 const EventOverview = () => {
     const route = useRoute()
     const eventId = route.params.id
-    console.log('Hello', eventId)
     const { data } = useService({ service:() => getActivityById(eventId) })
 
 	return (
@@ -18,11 +17,11 @@ const EventOverview = () => {
 			<View>
 				<Text className="font-semibold text-normal">{data?.name}</Text>
 				<Text className="italic text-primary-normal mt-2">
-					{data?.organizerID}
+					{data?.organizerID.name}
 				</Text>
 				<View className="flex flex-row justify-between mt-4">
 					<Text className="text-xsmall">{data?.address}</Text>
-					<Text className="text-xsmall font-semibold">{data?.distance} km</Text>
+					<Text className="text-xsmall font-semibold">2 km</Text>
 				</View>
 
 				<View className="flex flex-row justify-between mt-2">
@@ -35,7 +34,7 @@ const EventOverview = () => {
 					<View className="flex flex-row items-center gap-x-1">
 						<Feather name="users" size={12} color="black" />
 						<Text className="text-xsmall font-semibold">
-							{data?.current} / {data?.max}
+                            {data?.joinedUser?.length} / 100
 						</Text>
 					</View>
 				</View>
@@ -44,10 +43,10 @@ const EventOverview = () => {
 				<Text className="font-semibold text-small">Point</Text>
 				<View className="flex flex-row gap-x-5 mt-3">
 					<Text className="text-small text-primary-normal">
-						{data?.socialDays} social days
+						2 social days
 					</Text>
 					<Text className="text-small text-primary-normal">
-						{data?.socialPoints} points
+						100 points
 					</Text>
 				</View>
 			</View>

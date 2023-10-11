@@ -33,12 +33,12 @@ const EventHighLight = ({
 				</View>
 				<View className="flex flex-row items-center gap-x-1">
 					<Entypo name="location-pin" size={18} color="#006657" />
-					<Text className="text-xs text-ink-light">{data?.distance} km</Text>
+					<Text className="text-xs text-ink-light">2 km</Text>
 				</View>
 				<View className="flex flex-row items-center gap-x-1">
 					<Feather name="users" size={14} color="#006657" />
 					<Text className="text-xs text-ink-light">
-						{data?.current} / {data?.max}
+						{data?.joinedUser?.length} / 100
 					</Text>
 				</View>
 			</View>
