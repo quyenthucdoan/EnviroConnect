@@ -1,10 +1,16 @@
+import { TouchableOpacity } from "react-native-gesture-handler"
 import { Text } from "react-native"
 
-const BadgeCustom = ({ value }) => {
+const BadgeCustom = ({ value, onPress, style, styleText }) => {
 	return (
-		<Text className="bg-primary-lighter ml-2 w-20 rounded-normal text-center text-primary-darker">
-			{value}
-		</Text>
+		<TouchableOpacity
+            onPress= { onPress }
+            className={"bg-primary-lighter mr-2 rounded-normal px-2 " + style}
+        >
+            <Text className='text-center text-primary-darker' style={ styleText }>
+			    {value}
+		    </Text>
+        </TouchableOpacity>
 	)
 }
 

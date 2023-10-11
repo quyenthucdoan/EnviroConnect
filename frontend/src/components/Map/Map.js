@@ -7,7 +7,7 @@ const Map = ({ markers, team = false }) => {
 	const [location, setLocation] = useState(null)
 
 	useEffect(() => {
-		;(async () => {
+		(async () => {
 			let { status } = await Location.requestForegroundPermissionsAsync()
 			if (status !== "granted") {
 				//setErrorMsg("Permission to access location was denied")

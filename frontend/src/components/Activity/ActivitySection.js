@@ -1,28 +1,33 @@
-import { Entypo } from "@expo/vector-icons"
+import { Ionicons, Feather } from "@expo/vector-icons"
+import { useNavigation } from "@react-navigation/native"
 import { useState } from "react"
 import { FlatList, Text, TouchableOpacity, View } from "react-native"
 import useService from "../../hooks/useService"
 import { getAllActivies } from "../../services/activity"
-import PrimaryButton from "../Button/PrimaryButton"
-import SecondaryButton from "../Button/SecondaryButton"
+import BadgeCustom from "../Badge/BadgeCustom"
+import PrimaryBadge from "../Badge/PrimaryBadge"
 import VerticalList from "../List/VerticalList"
 import ActivityCard from "./ActivityCard"
 
 const ActivitySection = () => {
+	const navigation = useNavigation()
 	const { data } = useService({ service: () => getAllActivies() })
 	const [selected, setSelected] = useState("All")
-	const categories = ["All", "Planting", "Cleanup", "Collect", "Workshop"]
+	const categories = ["All", "Planting", "Wall Painting", "Cleanup", "Collect", "Workshop"]
 	return (
 		<>
 			<View className="flex flex-row justify-between items-center">
-				<Text className="text-title1 font-bold">Activities Suggestion</Text>
-				<TouchableOpacity className="text-xs">
-					<Text>On map</Text>
+				<Text className="text-title1 font-semibold">Activities Suggestion</Text>
+				<TouchableOpacity className="text-xs" onPress={() => navigation.navigate('SearchScreen')}>
+					<Text className='text-ink-light'>
+						<Text>On map </Text>
+						<Feather className='my-auto' name="chevron-right" size={14} />
+					</Text>
 				</TouchableOpacity>
 			</View>
 			<View className="flex flex-row items-center">
-				<Entypo name="location-pin" size={18} color="black" />
-				<Text>Find activities near you</Text>
+				<Ionicons name="location" size={18} color="#009580" />
+				<Text className='text-ink-light'> Find activities near you</Text>
 			</View>
 			<FlatList
 				data={categories}
@@ -30,16 +35,17 @@ const ActivitySection = () => {
 				showsHorizontalScrollIndicator={false}
 				renderItem={({ item }) =>
 					item === selected ? (
-						<PrimaryButton
-							className="px-2 mr-2"
-							title={item}
+						<PrimaryBadge
+							value={item}
 							onPress={() => setSelected(item)}
+							style='py-1 rounded-lg'
 						/>
 					) : (
-						<SecondaryButton
-							className="px-2 mr-2"
-							title={item}
+						<BadgeCustom
+							value={item}
 							onPress={() => setSelected(item)}
+							style='py-1 rounded-lg'
+							styleText={{ color: '#3E4E63' }}
 						/>
 					)
 				}
