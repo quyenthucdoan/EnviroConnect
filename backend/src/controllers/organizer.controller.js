@@ -1,12 +1,26 @@
 import Organizer from "../models/organizer.js";
-import Activity from "../models/activity.js"
+import Activity from "../models/activity.js";
 import User from "../models/user.js";
 
 const getAllOrganizer = (req, res) => {
   try {
     Organizer.find({})
-      .then((listActivity) => {
-        res.status(200).json(listActivity);
+      .then((listOrganizer) => {
+        res.status(200).json(listOrganizer);
+      })
+      .catch((err) => {
+        res.status(404).json({ message: err });
+      });
+  } catch (err) {
+    res.status(404).json({ message: err });
+  }
+};
+
+const getAnOrganizer = (req, res) => {
+  try {
+    Organizer.findById(req.params.organizerId)
+      .then((org) => {
+        res.status(200).json(org);
       })
       .catch((err) => {
         res.status(404).json({ message: err });
@@ -48,4 +62,4 @@ const doneActivity = (req, res) => {
     });
 };
 
-export { getAllOrganizer, doneActivity };
+export { getAllOrganizer, getAnOrganizer, doneActivity };

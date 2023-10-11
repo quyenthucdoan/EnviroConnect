@@ -131,4 +131,48 @@ const markDoneActivity = (req, res) => {
   }
 };
 
-export { createUser, getUser, findBuddy, registerActivity, markDoneActivity };
+const addBuddy = (req, res) => {
+  const userId = req.params.userid;
+  const buddyId = req.body.buddyId;
+  User.findById(userId)
+    .then((user) => {
+      user.buddy.push(buddyId);
+      user.save();
+      return user;
+    })
+    .then((user) => {
+      res.status(200).json(user);
+    })
+    .catch((err) => {
+      res.status(404).json({ message: err.message });
+    });
+};
+
+const listBuddy = (req, res) => {
+  const userId = req.params.userid;
+  let ls = [];
+  User.findById(userId)
+    .exec()
+    .then((user) => {
+      let listFriends = user.buddy;
+      for (let userId of listFriends) {
+        User.findById(userId).then((user) => ls.push(user));
+      }
+      return ls;
+    })
+    .then((users) => {
+      res.status(200).json(users);
+    })
+    .catch((err) => {
+      res.status(404).json({ message: err.message });
+    });
+};
+export {
+  createUser,
+  getUser,
+  findBuddy,
+  registerActivity,
+  markDoneActivity,
+  addBuddy,
+  listBuddy,
+};

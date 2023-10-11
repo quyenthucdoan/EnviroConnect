@@ -11,6 +11,8 @@ tags:
     description: External APIs for users
   - name: activities
     description: External APIs for activities
+  - name: organizers
+    description: External APIs for organizers
 paths:
   /api/users/create-user:
     post:
@@ -69,9 +71,9 @@ paths:
           required: true
           schema:
             type: string
-      summary: Get a user
-      description: get a user
-      operationId: get a user
+      summary: Get nearby users
+      description: Get nearby users
+      operationId: Get nearby users
       responses:
         200:
           description: Successful operation
@@ -112,7 +114,37 @@ paths:
                 $ref: "#/components/schemas/RegisterActivityResponse"
         400:
           description: Invalid input
-  /api/users/{userid}/done-activity:
+  # /api/users/{userid}/done-activity:
+  #   put:
+  #     tags:
+  #       - users
+  #     parameters:
+  #       - in: path
+  #         name: userid
+  #         description: id of user
+  #         required: true
+  #         schema:
+  #           type: string
+  #     summary: add 1 buddy
+  #     description: mark done 1 activity
+  #     operationId: MarkDoneActivity
+  #     requestBody:
+  #       required: true
+  #       description: BuddyId need to add to user's buddy
+  #       content:
+  #         application/json:
+  #           schema:
+  #             $ref: "#/components/schemas/MarkDoneActivityRequest"
+  #     responses:
+  #       200:
+  #         description: Successful operation
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/MarkDoneActivityResponse"
+  #       400:
+  #         description: Invalid input
+  /api/users/{userid}/buddy:
     put:
       tags:
         - users
@@ -123,25 +155,26 @@ paths:
           required: true
           schema:
             type: string
-      summary: mark done 1 activity
-      description: mark done 1 activity
-      operationId: MarkDoneActivity
+      summary: add 1 buddy
+      description: add 1 buddy
+      operationId: add 1 buddy
       requestBody:
         required: true
         description: activityid need to mark done
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/MarkDoneActivityRequest"
+              $ref: "#/components/schemas/AddBuddyRequest"
       responses:
         200:
           description: Successful operation
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/MarkDoneActivityResponse"
+                $ref: "#/components/schemas/AddBuddyResponse"
         400:
           description: Invalid input
+
   /api/activities/create-activity:
     post:
       tags:
@@ -206,7 +239,7 @@ paths:
                   - $ref: "#/components/schemas/CreateActivityResponse"
         404:
           description: Error
-  /api/activities/651a5221a4e4a95676a65e8f/user:
+  /api/activities/{userid}/user:
     get:
       tags:
         - activities
@@ -231,32 +264,72 @@ paths:
         404:
           description: Error
 
+  /api/organizers/:
+    get:
+      tags:
+        - organizers
+      summary: Get all organizers
+      description: Get all organizers
+      operationId: Get all organizers
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetOrganizersResponse"
+        404:
+          description: Error
+  /api/organizers/{organizerid}/:
+    get:
+      tags:
+        - organizers
+      parameters:
+        - in: path
+          name: organizerid
+          description: id of user
+          required: true
+          schema:
+            type: string
+      summary: Get 1 organizers
+      description: Get 1 organizers
+      operationId: Get 1 organizers
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetOrganizersResponse"
+        404:
+          description: Error
+
+  /api/organizers/{activityid}/set-done:
+    put:
+      tags:
+        - organizers
+      parameters:
+        - in: path
+          name: activityid
+          description: id of activity
+          required: true
+          schema:
+            type: string
+      summary: Mark done 1 activity in many user
+      description: when organizers mark done 1 activity, status of that activity in user joined  will change from 0 to 1. Return list user
+      operationId: MarkDoneActivity
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SetDone"
+        404:
+          description: Error
+
 components:
   schemas:
-    GetUserJobListReponse:
-      type: object
-      properties:
-        data:
-          type: array
-          example:
-            [
-              {
-                id: 230816000001,
-                priority: 5,
-                type: archive,
-                objectId: 7de92d5d-5ef1-45a7-a7a2-8fce7c626934,
-                status: complete,
-                createdAt: 2023-08-16T08:23:42.786Z,
-              },
-            ]
-          items:
-            type: object
-        message:
-          type: string
-          example:
-        result:
-          type: string
-          example: ok
     CreateUserRequest:
       type: object
       properties:
@@ -682,3 +755,95 @@ components:
             long: 106.5678225
           organizerID: 651d3d9ba4e4a956761ec227
           distance: 30.0128234230
+    AddBuddyRequest:
+      type: object
+      properties:
+        buddyId:
+          type: string
+          example: 651d42a12345a95676215752
+    AddBuddyResponse:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: 652274823b7da4dfe80a963e
+        name:
+          type: string
+          example: Huynh Ngoc Nhu
+        email:
+          type: string
+          example: nhuhuynh@gmail.com
+        address:
+          type: string
+          example: 244A Lê Văn Quới, Bình Trị Đông, Bình Tân, Thành phố Hồ Chí Minh
+        location:
+          type: object
+          properties:
+            lat:
+              type: number
+              example: 10.7812029
+            long:
+              type: number
+              example: 106.6030883
+        isOrganizer:
+          type: boolean
+          example: false
+        activities:
+          type: array
+          example: []
+        buddy:
+          type: array
+          example: ["651d42a12345a95676215752"]
+    GetOrganizersResponse:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: 651d3d9ba4e4a956761ec226
+        name:
+          type: string
+          example: United Nations Environment Programme
+        description:
+          type: string
+          example: The United Nations Environment Programme is responsible for coordinating responses to environmental issues within the United Nations system. It was established by Maurice Strong, its first director, after the United Nations Conference on the Human Environment in Stockholm in June 1972.
+    SetDone:
+      type: array
+      items:
+        properties:
+          _id:
+            type: string
+            example: 652274823b7da4dfe80a963e
+          name:
+            type: string
+            example: Huynh Ngoc Nhu
+          email:
+            type: string
+            example: nhuhuynh@gmail.com
+          address:
+            type: string
+            example: 244A Lê Văn Quới, Bình Trị Đông, Bình Tân, Thành phố Hồ Chí Minh
+          location:
+            type: object
+            properties:
+              lat:
+                type: number
+                example: 10.7812029
+              long:
+                type: number
+                example: 106.6030883
+          isOrganizer:
+            type: boolean
+            example: false
+          activities:
+            type: array
+            items:
+              properties:
+                activityId:
+                  type: string
+                  example: 6524d6159f408a1ac665e4bc
+                joinDate:
+                  type: string
+                  example: 2023-10-09T03:24:35.996Z,
+                status:
+                  type: number
+                  example: 1

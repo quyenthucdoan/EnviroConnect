@@ -8,7 +8,6 @@ const organizerSchema = new Schema({
   name: String,
   email: String,
   description: String,
-  activity: [{ type: ObjectId, ref: "activity" }],
 });
 
 const Organizer = mongoose.model("organizer", organizerSchema);

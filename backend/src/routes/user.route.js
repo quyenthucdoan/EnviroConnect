@@ -1,10 +1,13 @@
 import express from "express";
+
 import {
   createUser,
   getUser,
   findBuddy,
+  listBuddy,
   registerActivity,
   markDoneActivity,
+  addBuddy
 } from "../controllers/user.controller.js";
 const router = express.Router();
 
@@ -18,12 +21,14 @@ router.get("/:id", getUser);
 router.get("/:id/near-buddies", findBuddy);
 
 /* Return all your friends*/
-// router.get("/users/:id/friends", listFriends);
+router.put("/:userid/buddy", addBuddy);
+router.get("/:userid/friends", listBuddy);
 
 /* Register activity  for user*/
 router.put("/:userid/added-activity", registerActivity);
 
 /* Completed an activity*/
 router.put("/:userid/done-activity", markDoneActivity);
+
 
 export default router;
