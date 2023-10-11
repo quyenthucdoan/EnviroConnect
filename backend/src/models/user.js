@@ -12,23 +12,29 @@ const joinedActivitiesSchema = new Schema({
   status: Number, // 0: not completed; 1: completed
 });
 
-const notificationSchema = new Schema({
-
-})
+const buddySchema = new Schema({
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: "user",
+  },
+});
 
 const userSchema = new Schema({
   name: String,
   email: String,
   address: String,
+  image: String,
   location: locationSchema,
   isOrganizer: Boolean,
   description: String,
   activities: [joinedActivitiesSchema],
-  buddy: [{ type: Schema.Types.ObjectId, ref: "user" }],
-  // belongto:{
-
-  // }
-  notification:[]
+  buddy: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "user",
+    },
+  ],
+  // notification: [],
 });
 
 const User = mongoose.model("user", userSchema);

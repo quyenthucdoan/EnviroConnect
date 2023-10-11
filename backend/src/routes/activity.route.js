@@ -15,7 +15,7 @@ router.get("/:id", getAnActivity);
 /* Get all activity*/
 router.get("/", getAllActivity);
 
-/* Find nearby activity Buddy */
+/* Find nearby activity */
 router.get("/:userid/user", listNearbyActivity);
 
 export default router;

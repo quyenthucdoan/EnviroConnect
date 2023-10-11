@@ -1,7 +1,8 @@
 [
   {
-    "_id": "651d42afa4e4a95676215752",
     "name": "Environmental Volunteerism on the Rise in Vietnam",
+    "image": "https://static-images.vnncdn.net/files/publish/trong-rung-gop-phan-bao-ve-moi-truong-song-xanh-sach-va-phat-trien-ben-vung-ec50d3a6dee14bf2b2bf1f08ffe99797.jpg",
+    "type": "Cleanup",
     "startDate": "2023-10-22T16:00:00Z",
     "endDate": "2023-10-25T16:00:00Z",
     "description": "Vietnam’s rapid development from one of the five poorest countries in the world in 1985 to one of the world’s fastest-growing economies has resulted in dramatic environmental consequences from polluted rivers, biodiversity loss, and air quality depletion. Climate and disaster risks are widely viewed as a direct threat to Vietnam’s aspiration to become a high-income economy. This is especially true in the nation’s deltas from the Red River to the Mekong. The nation is one of the most hazard-prone countries in the Asia Pacific region. With an extensive coastline stretching over 2025 miles, citizens are regularly exposed to severe storms, cyclones, typhoons, floods, landslides, and coastal erosion.",
@@ -13,8 +14,9 @@
     "organizerID": "651d3d9ba4e4a956761ec226"
   },
   {
-    "_id": "651d42afa4e4a95676215753",
     "name": "CLEAN UP THE WORLD",
+    "image": "https://image.tienphong.vn/w890/Uploaded/2023/pcgycivo/2019_06_11/image001_JRBW.jpg",
+    "type": "Cleanup",
     "startDate": "2023-10-22T16:00:00Z",
     "endDate": "2023-10-25T16:00:00Z",
     "description": "Clean Up the World was established in 1993 and is one of the largest community-based environmental programs in the world. We unite community groups, schools, businesses, and local governments to carry out activities that address local environmental issues. We provide expertise, support and guidance to members in 130 countries across the world. Our vision is to inspire all people across all continents to tread lightly, clean up and conserve the planet.Join us a global effort to combat waste and plastic pollution. You can register a Clean Up the World activity at any time of the year",
@@ -26,8 +28,9 @@
     "organizerID": "651d3d9ba4e4a956761ec227"
   },
   {
-    "_id": "651d42afa4e4a95676215754",
     "name": "TRG Gives Hands To The WWF’s Tree Planting Project",
+    "image": "https://images2.thanhnien.vn/528068263637045248/2023/2/2/quang-ngai-1-1675318270494204250701.jpg",
+    "type": "Planting",
     "startDate": "2023-11-11T16:00:00Z",
     "endDate": "2023-11-14T16:00:00Z",
     "description": "“This project is among community efforts that seek to mitigate the impact of climate change. Planting tree is recognized as powerful tools in minimizing the effects. By joining the project, we are happy to give more hand to improve the environment and support the livelihood of local communities. At TRG, we also have many corporate social responsibility (CSR) activities that involve our employees and their families to create positive changes in society”, Mr. Pham Hong Thai, Deputy Management Director, TRG International said.",

@@ -2,6 +2,8 @@ import Activity from "../models/activity.js";
 import User from "../models/user.js";
 import returnMyProflie from "../utils/returnMyProflie.js";
 import nearby from "../utils/nearby.js";
+import multer from "multer";
+// const upload = multer({dest:})
 
 const createActivity = (req, res) => {
   const location = {
@@ -10,6 +12,8 @@ const createActivity = (req, res) => {
   };
   const activity = new Activity({
     name: req.body.name,
+    image: req.body.image,
+    type: req.body.type,
     startDate: req.body.startDate,
     endDate: req.body.endDate,
     description: req.body.description,

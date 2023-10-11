@@ -12,6 +12,7 @@ const createUser = (req, res) => {
     // userID: req.body.userID,
     name: req.body.name,
     email: req.body.email,
+    image: req.body.image,
     address: req.body.address,
     location: location,
     isOrganizer: false,
@@ -38,8 +39,34 @@ const getUser = (req, res) => {
   try {
     const usID = req.params.id;
     User.findById(usID)
+      .populate({
+        path: "buddy",
+      })
       .exec()
       .then((user) => {
+        res.status(200).json(user);
+      })
+      .catch((err) => {
+        res.status(404).json({
+          success: false,
+          error: err,
+        });
+      });
+  } catch (er) {
+    res.status(404).json({
+      success: false,
+      error: er.message,
+    });
+  }
+};
+
+const getAct = (req, res) => {
+  try {
+    const usID = req.params.id;
+    User.findById(usID)
+      .exec()
+      .then((user) => {
+        user.activity.po;
         res.status(200).json(user);
       })
       .catch((err) => {
@@ -97,7 +124,7 @@ const registerActivity = (req, res) => {
       Activity.findByIdAndUpdate(activityId, { $push: { joinedUser: userId } }),
     ])
       .then(([user, activity]) => {
-        res.status(200).json({ status: "success", user: user, act: activity });
+        res.status(200).json({ status: "success" });
       })
       .catch((err) => {
         res.status(404).json({ message: err.message });

@@ -25,12 +25,13 @@ const getLocation = (user) => {
 };
 
 const nearby = (obj, user) => {
+  // const obj = flat == true ? "activity" : "user";
   const [currentlat, currentlong] = getLocation(user);
   let userlist = [];
   for (let i = 0; i < obj.length; i++) {
     const [lat, long] = getLocation(obj[i]);
     let distance = calDistance(currentlat, currentlong, lat, long);
-    let us = { user: obj[i] };
+    let us = { obj: obj[i] };
     us["distance"] = distance;
     userlist.push(us);
   }
