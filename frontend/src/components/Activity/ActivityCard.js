@@ -1,10 +1,10 @@
 import { AntDesign, Feather, Ionicons } from "@expo/vector-icons"
 import { useNavigation } from "@react-navigation/native"
 import moment from "moment"
-import React from "react"
+import React, { useState } from "react"
 import { Text, TouchableOpacity, View } from "react-native"
 import useService from "../../hooks/useService"
-import { getActivityById } from "../../services/activity"
+import { getActivityById, registerActivity } from "../../services/activity"
 import FilledButton from "../Button/FilledButton"
 
 const ActivityCard = ({
@@ -16,36 +16,62 @@ const ActivityCard = ({
 	endDate,
 	current,
 	max,
+	activityId,
+	status
 }) => {
 	const navigation = useNavigation()
-	const {data} = useService({service: () => getActivityById(_id)})
+	const {data} = useService({service: () => {
+		if (activityId !== undefined) {
+			return getActivityById(activityId)
+			
+		} else {
+			return getActivityById(_id)	
+		}
+	}})
+	const [action, setAction] = useState(status === undefined ? 'JOIN' : (status === 0 ? 'JOINED' : 'FINISHED'))
 
 	return (
 		<TouchableOpacity
 			className="flex gap-y-2 bg-white rounded-primary px-5 pt-3 pb-5"
-			onPress={() => navigation.navigate("DetailScreen")}
+			onPress={() => navigation.navigate("DetailScreen", {
+				eventId: activityId !== undefined ? activityId : _id
+			})}
 		>
 			<View className="flex flex-row justify-between items-start">
-				<View className="gap-y-2 basis-4/5">
-					<Text className="text-title2 font-bold ">{name}</Text>
+				<View className="gap-y-2 basis-3/4">
+					<Text className="text-title2 font-bold ">{data?.name}</Text>
 					<Text className="text-primary-darker italic">{data?.organizerID.name}</Text>
 				</View>
-				<FilledButton title="JOIN" className="bg-primary-lighter px-4 py-2" styleText={{ color: "#276831", fontWeight: 500 }} />
+				<FilledButton 
+					title={action} 
+					className="bg-primary-lighter px-4 py-2" 
+					styleText={{ color: "#276831", fontWeight: 500 }} 
+					onPress={() => {
+						if (action == 'JOIN') {
+							const { response } = registerActivity('65268aed6d7dd5c94b27fc22', data?._id)
+							console.log("Ba oi ba", response, data?._id)
+							if (response?.status == 'success') {
+								console.log('Success')
+								setAction('JOINED')
+							}
+						}
+					}}
+				/>
 			</View>
 
 			<View className="flex flex-row justify-between">
-				<Text className="text-gray text-xs basis-4/5">{address}</Text>
+				<Text className="text-gray text-xs basis-4/5">{data?.address}</Text>
 				<Text className="text-xs">2km</Text>
 			</View>
 			<View className="flex flex-row justify-between ">
 				<View className="flex flex-row items-center gap-x-1">
 					<Ionicons name="calendar-sharp" size={14} color="#3E4E63" />
 					<Text className="text-xs">
-						{moment(startDate).utc().format("ddd, MMM DD")}
+						{moment(data?.startDate).utc().format("ddd, MMM DD")}
 					</Text>
 					<AntDesign name="arrowright" size={10} color="black" />
 					<Text className="text-xs">
-						{moment(endDate).utc().format("ddd, MMM DD")}
+						{moment(data?.endDate).utc().format("ddd, MMM DD")}
 					</Text>
 				</View>
 				<View className="flex flex-row items-center gap-x-1">

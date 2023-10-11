@@ -8,5 +8,11 @@ const getActivityById = async (id) => {
     return request({ method: "GET", url: `/activities/${id}` })
 }
 
-export { getActivityById, getAllActivies }
+const registerActivity = async (userId, activityId) => {
+	return request({ method: "PUT", url: `/users/${userId}/added-activity`, data: {
+		activityid: `${activityId}`,
+	} })
+}
+
+export { getActivityById, getAllActivies, registerActivity }
 

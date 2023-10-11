@@ -1,12 +1,12 @@
-import { View, Image } from "react-native"
+import { View, Image, Text } from "react-native"
 import EventHighLight from "../components/Event/EventHighlight"
 import Layout from "../components/Layout/Layout"
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs"
 import EventOverview from "../components/Event/EventOverview"
 import EventReview from "../components/Event/EventReview"
 import EventReward from "../components/Event/EventReward"
+import { useRoute } from "@react-navigation/native"
 
-const tags = ["Planting", "Near you", "Clean up"]
 const event = {
 	title: "Plant for future",
 	current: 20,
@@ -24,7 +24,10 @@ const event = {
 
 const Tab = createMaterialTopTabNavigator()
 
-const DetailScreen = ({ navigation }) => {
+const DetailScreen = () => {
+    const route = useRoute()
+    const eventId = route.params.eventId
+
 	return (
 		<Layout>
 			<View className="flex-1 pt-32 bg-white">
@@ -32,7 +35,7 @@ const DetailScreen = ({ navigation }) => {
 					className="w-full h-1/3 absolute"
 					source={require("../assets/images/ocg-saving-the-ocean.jpg")}
 				></Image>
-				<EventHighLight tags={tags} event={event}></EventHighLight>
+				<EventHighLight eventId={eventId}></EventHighLight>
 				<Tab.Navigator
 					className="mx-4"
 					screenOptions={{
@@ -44,7 +47,7 @@ const DetailScreen = ({ navigation }) => {
 					<Tab.Screen
 						name="OVERVIEW"
 						component={EventOverview}
-						initialParams={event}
+						initialParams={{ id: eventId }}
 					/>
 					<Tab.Screen name="REWARD" component={EventReward} />
 					<Tab.Screen name="REVIEW" component={EventReview} />
