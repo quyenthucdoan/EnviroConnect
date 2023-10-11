@@ -8,6 +8,7 @@ import { getUserById } from "../../services/user"
 import FilledButton from "../Button/FilledButton"
 
 const ActivityCard = ({
+	_id,
 	name,
 	organizerID,
 	address,
@@ -23,7 +24,9 @@ const ActivityCard = ({
 	return (
 		<TouchableOpacity
 			className="flex gap-y-2 bg-white rounded-primary px-5 pt-3 pb-5"
-			onPress={() => navigation.navigate("DetailScreen")}
+			onPress={() => navigation.navigate("DetailScreen", {
+				eventId: _id
+			})}
 		>
 			<View className="flex flex-row justify-between items-start">
 				<View className="gap-y-2 basis-4/5">

@@ -13,7 +13,7 @@ const MainNavigator = () => {
 	const routes = {
 		Home: "home",
 		Search: "search",
-		Achievement: "map",
+		Achievement: "trophy",
 	}
 	return (
 		<NavigationContainer initialRouteName="HomeNavigator">
