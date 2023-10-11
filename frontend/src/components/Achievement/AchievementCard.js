@@ -7,11 +7,11 @@ import SecondaryButton from "../Button/SecondaryButton"
 import Avatar from "../Other/Avatar"
 import SocialPoint from "../Other/SocialPoint"
 
-const AchievementCard = ({ name, point }) => {
+const AchievementCard = ({ name, point, active, onPress }) => {
 	return (
 		<TouchableOpacity
-			className="flex-row gap-y-2 rounded-primary px-6 pt-4 pb-6 items-center"
-
+			className={`flex-row gap-y-2 rounded-primary px-6 pt-4 pb-6 items-center ${active && "bg-primary-lighter"}`}
+			onPress={onPress}
 		>
 			<Avatar
 				src={{
@@ -19,7 +19,7 @@ const AchievementCard = ({ name, point }) => {
 				}}
 			/>
 			<View className="grow">
-				<SocialPoint name={name} number={point} />
+				<SocialPoint name={name} number={20} />
 				<View className="flex-row justify-self-end gap-x-2 self-end mt-2">
 					<PrimaryButton className="px-6">
 						<Ionicons

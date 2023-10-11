@@ -4,12 +4,11 @@ import moment from "moment"
 import React from "react"
 import { Text, TouchableOpacity, View } from "react-native"
 import useService from "../../hooks/useService"
-import { getUserById } from "../../services/user"
+import { getActivityById } from "../../services/activity"
 import PrimaryButton from "../Button/PrimaryButton"
-
 const ActivityCard = ({
+	_id,
 	name,
-	organizerID,
 	address,
 	distance,
 	startDate,
@@ -18,7 +17,7 @@ const ActivityCard = ({
 	max,
 }) => {
 	const navigation = useNavigation()
-	const { data } = useService({ service: () => getUserById(organizerID) })
+	const {data} = useService({service: () => getActivityById(_id)})
 
 	return (
 		<TouchableOpacity
@@ -28,14 +27,14 @@ const ActivityCard = ({
 			<View className="flex flex-row justify-between items-start">
 				<View className="gap-y-2 basis-4/5">
 					<Text className="text-title2 font-bold ">{name}</Text>
-					<Text className="text-primary-darker italic">{organizerID}</Text>
+					<Text className="text-primary-darker italic">{data?.organizerID.name}</Text>
 				</View>
 				<PrimaryButton title="Join" className="px-6" />
 			</View>
 
 			<View className="flex flex-row justify-between">
 				<Text className="text-gray text-xs basis-4/5">{address}</Text>
-				<Text className="text-xs">{distance}km</Text>
+				<Text className="text-xs">2km</Text>
 			</View>
 			<View className="flex flex-row justify-between ">
 				<View className="flex flex-row items-center gap-x-1">
@@ -51,7 +50,7 @@ const ActivityCard = ({
 				<View className="flex flex-row items-center gap-x-1">
 					<Feather name="users" size={14} color="black" />
 					<Text className="text-xs">
-						{current} / {max}
+						{data?.joinedUser?.length} / 100
 					</Text>
 				</View>
 			</View>
