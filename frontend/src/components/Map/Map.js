@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react"
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps"
 import ActivityMarker from "../Activity/ActivityMarker"
 
-const Map = ({ markers }) => {
+const Map = ({ markers, team = false }) => {
 	const [location, setLocation] = useState(null)
 
 	useEffect(() => {
@@ -42,7 +42,7 @@ const Map = ({ markers }) => {
 						longitude: marker?.long,
 					}}
 				>
-					<ActivityMarker name="tree-outline" team={false} />
+					<ActivityMarker name="tree-outline" team={team} />
 				</Marker>
 			))}
 		</MapView>

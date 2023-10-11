@@ -4,8 +4,9 @@ const getAllActivies = async () => {
 	return request({ method: "GET", url: `/activities` })
 }
 
-const getActivityById = async(id) => {
-	return request({ method: "GET", url: `/activities/${id}` })
+const getActivityById = async (id) => {
+    return request({ method: "GET", url: `/activities/${id}` })
 }
 
-export { getAllActivies, getActivityById }
+export { getActivityById, getAllActivies }
+
