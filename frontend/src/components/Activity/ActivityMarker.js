@@ -1,7 +1,7 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons"
 import { Image, View } from "react-native"
 
-const ActivityMarker = ({ name, team }) => {
+const ActivityMarker = ({ name, team, img }) => {
 	return (
 		<View
 			className="items-center justify-end"
@@ -27,7 +27,7 @@ const ActivityMarker = ({ name, team }) => {
 						className="w-full h-full bg-primary-dark"
 						style={{ borderRadius: 9999 }}
 						source={{
-							uri: "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
+							uri: img,
 						}}
 					/>
 				</View>

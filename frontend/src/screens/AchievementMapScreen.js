@@ -39,39 +39,42 @@ const AchievementMapScreen = () => {
 	const snapPoints = useMemo(() => ["25%", "50%", "90%"], [])
 
 	
-	const { data } = useService({ service: () => getAllBuddies('651a5221a4e4a95676a65e89') })
+	const { data } = useService({ service: () => getAllBuddies('65268aed6d7dd5c94b27fc22') })
+	
 
-
-	const [chosen, setChosen] = useState('651a5221a4e4a95676a65e89')
+	const [chosen, setChosen] = useState('65268aed6d7dd5c94b27fc22')
 	const [markers, setMarkers]	= useState([])
+	const [image, setImage] = useState("")
 
 	const changeChosen = async (chosen) => {
-		
-		
-		const activityIds = chosen.activities.map(activity => activity.activityId)
+		const activityIds = chosen?.activities?.map((activity) => {
+			if (activity.activityId !== undefined) return activity.activityId
+		})
+
 		const markers = await Promise.all(activityIds.map(async (activityId) => {
 			try {
 			  const activityLocation = await getActivityById(activityId);
-			  return activityLocation.data.location;
+			  return activityLocation?.data?.location;
 			} catch (error) {
-			  console.log("error");
+			  console.log(error);
 			}
 		  }));
 
 		setChosen(chosen._id)
+		setImage(chosen?.image)
 		setMarkers(markers);
 	}
 	
 	return (
 		<Layout>
-			<Map markers={markers} team={true}></Map>
+			<Map markers={markers} team={true} img={image}></Map>
 			<BottomSheet ref={sheetRef} snapPoints={snapPoints}>
 				<CustomTextInput placeholder={"Search your team"} />
 				<BottomSheetFlatList
 					data={data}
 					keyExtractor={(_, i) => i}
 					renderItem={({ item }) => 
-						<AchievementCard {...item.user} active={item.user?._id == chosen} onPress={()=>changeChosen(item.user)}/>
+						<AchievementCard {...item.obj} active={item.obj?._id == chosen} onPress={()=>changeChosen(item.obj)}/>
 					}
 					ItemSeparatorComponent={() => <View className="mx-6 bg-gray h-[1]" />}
 				/>

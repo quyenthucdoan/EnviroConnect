@@ -7,7 +7,7 @@ import SecondaryButton from "../Button/SecondaryButton"
 import Avatar from "../Other/Avatar"
 import SocialPoint from "../Other/SocialPoint"
 
-const AchievementCard = ({ name, point, active, onPress }) => {
+const AchievementCard = ({ name, image, active, onPress }) => {
 	return (
 		<TouchableOpacity
 			className={`flex-row gap-y-2 rounded-primary px-6 pt-4 pb-6 items-center ${active && "bg-primary-lighter"}`}
@@ -15,7 +15,7 @@ const AchievementCard = ({ name, point, active, onPress }) => {
 		>
 			<Avatar
 				src={{
-					uri: "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
+					uri: image,
 				}}
 			/>
 			<View className="grow">
