@@ -7,6 +7,7 @@ import {
   createActivity,
 } from "../controllers/activity.controller.js";
 
+/* Create 1 activity*/
 router.post("/create-activity", createActivity);
 
 /* Get 1 activity*/

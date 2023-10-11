@@ -60,29 +60,6 @@ const getUser = (req, res) => {
   }
 };
 
-const getAct = (req, res) => {
-  try {
-    const usID = req.params.id;
-    User.findById(usID)
-      .exec()
-      .then((user) => {
-        user.activity.po;
-        res.status(200).json(user);
-      })
-      .catch((err) => {
-        res.status(404).json({
-          success: false,
-          error: err,
-        });
-      });
-  } catch (er) {
-    res.status(404).json({
-      success: false,
-      error: er.message,
-    });
-  }
-};
-
 const findBuddy = (req, res) => {
   try {
     const userId = req.params.id;
@@ -161,39 +138,18 @@ const markDoneActivity = (req, res) => {
 const addBuddy = (req, res) => {
   const userId = req.params.userid;
   const buddyId = req.body.buddyId;
-  User.findById(userId)
-    .then((user) => {
-      user.buddy.push(buddyId);
-      user.save();
-      return user;
-    })
-    .then((user) => {
-      res.status(200).json(user);
+  Promise.all([
+    User.findByIdAndUpdate(userId, { $push: { buddy: buddyId } }),
+    User.findByIdAndUpdate(buddyId, { $push: { buddy: userId } }),
+  ])
+    .then(() => {
+      res.status(200).json({ message: "success" });
     })
     .catch((err) => {
       res.status(404).json({ message: err.message });
     });
 };
 
-const listBuddy = (req, res) => {
-  const userId = req.params.userid;
-  let ls = [];
-  User.findById(userId)
-    .exec()
-    .then((user) => {
-      let listFriends = user.buddy;
-      for (let userId of listFriends) {
-        User.findById(userId).then((user) => ls.push(user));
-      }
-      return ls;
-    })
-    .then((users) => {
-      res.status(200).json(users);
-    })
-    .catch((err) => {
-      res.status(404).json({ message: err.message });
-    });
-};
 export {
   createUser,
   getUser,
@@ -201,5 +157,4 @@ export {
   registerActivity,
   markDoneActivity,
   addBuddy,
-  listBuddy,
 };

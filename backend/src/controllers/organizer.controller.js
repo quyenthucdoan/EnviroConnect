@@ -35,30 +35,28 @@ const doneActivity = (req, res) => {
   Activity.findById(activityId)
     .populate("joinedUser")
     .exec()
-    .then((act) => {
-      let listUser = [];
-      for (let userId of act.joinedUser) {
-        listUser.push(userId._id);
-      }
+    .then((activity) => {
+      let listUser = activity.joinedUser;
       if (listUser.length > 0) {
-        for (let userId of listUser) {
-          User.findById(userId)
+        for (const user of listUser) {
+          User.findById(user._id)
             .exec()
             .then((user) => {
               for (let ac of user.activities) {
                 if (ac.activityId.equals(activityId)) {
                   ac.status = 1;
+                  user.save();
                   break;
                 }
               }
-              user.save();
             });
         }
       }
-      return act.joinedUser;
+
+      return listUser;
     })
-    .then((listUser) => {
-      res.status(200).json(listUser);
+    .then(() => {
+      res.status(200).json({message : "success"});
     });
 };
 

@@ -4,7 +4,6 @@ import {
   createUser,
   getUser,
   findBuddy,
-  listBuddy,
   registerActivity,
   markDoneActivity,
   addBuddy,
@@ -31,9 +30,6 @@ router.get("/:id/near-buddies", findBuddy);
 
 /* Add 1 friend*/
 router.put("/:userid/buddy", addBuddy);
-
-/* Return all your friends*/
-router.get("/:userid/friends", listBuddy);
 
 /* Register activity  for user*/
 router.put("/:userid/added-activity", registerActivity);
