@@ -6,14 +6,16 @@ import { theme } from "../../tailwind.config.js"
 import AchievementMapScreen from "../screens/AchievementMapScreen.js"
 import SearchScreen from "../screens/SearchScreen.js"
 import HomeNavigator from "./HomeNavigator.js"
+import UserScreen from "../screens/UserScreen.js"
 
 const Tab = createBottomTabNavigator()
 
 const MainNavigator = () => {
 	const routes = {
 		Home: "home",
-		Search: "search",
+		Discovery: "search",
 		Achievement: "trophy",
+		User: "user"
 	}
 	return (
 		<NavigationContainer initialRouteName="HomeNavigator">
@@ -28,8 +30,9 @@ const MainNavigator = () => {
 				})}
 			>
 				<Tab.Screen name="Home" component={HomeNavigator} />
-				<Tab.Screen name="Search" component={SearchScreen} />
+				<Tab.Screen name="Discovery" component={SearchScreen} />
 				<Tab.Screen name="Achievement" component={AchievementMapScreen} />
+				<Tab.Screen name="User" component={UserScreen} />
 			</Tab.Navigator>
 		</NavigationContainer>
 	)

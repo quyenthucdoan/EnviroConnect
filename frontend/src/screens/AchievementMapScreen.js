@@ -39,10 +39,10 @@ const AchievementMapScreen = () => {
 	const snapPoints = useMemo(() => ["25%", "50%", "90%"], [])
 
 	
-	const { data } = useService({ service: () => getAllBuddies('651a5221a4e4a95676a65e89') })
+	const { data } = useService({ service: () => getAllBuddies('65268aed6d7dd5c94b27fc22') })
 
 
-	const [chosen, setChosen] = useState('651a5221a4e4a95676a65e89')
+	const [chosen, setChosen] = useState('65268aed6d7dd5c94b27fc22')
 	const [markers, setMarkers]	= useState([])
 
 	const changeChosen = async (chosen) => {

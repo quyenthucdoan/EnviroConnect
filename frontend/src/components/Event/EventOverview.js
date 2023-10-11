@@ -6,6 +6,7 @@ import moment from "moment"
 import useService from "../../hooks/useService"
 import { getActivityById } from "../../services/activity"
 import { useRoute } from "@react-navigation/native"
+import { ScrollView } from "react-native-gesture-handler"
 
 const EventOverview = () => {
     const route = useRoute()
@@ -13,7 +14,7 @@ const EventOverview = () => {
     const { data } = useService({ service:() => getActivityById(eventId) })
 
 	return (
-		<View className="h-full bg-white px-2 pt-5">
+		<ScrollView className="h-full bg-white px-2 pt-5">
 			<View>
 				<Text className="font-semibold text-normal">{data?.name}</Text>
 				<Text className="italic text-primary-normal mt-2">
@@ -54,11 +55,11 @@ const EventOverview = () => {
 				<Text className="font-semibold text-small">Description</Text>
 				<Text className="text-ink-light text-xsmall">{data?.description}</Text>
 			</View>
-			<View className="flex-row gap-x-2 mt-4 justify-end">
+			<View className="flex-row gap-x-2 mt-4 mb-10 justify-end">
 				<OutlinedButton title="JOIN WITH TEAM"></OutlinedButton>
 				<FilledButton title="JOIN NOW!"></FilledButton>
 			</View>
-		</View>
+		</ScrollView>
 	)
 }
 
