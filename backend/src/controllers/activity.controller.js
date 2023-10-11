@@ -43,6 +43,9 @@ const getAnActivity = (req, res) => {
   try {
     Activity.findById(req.params.id)
       .populate("organizerID")
+      .populate({
+        path: "joinedUser",
+      })
       .exec()
       .then((act) => {
         res.status(200).json(act);
