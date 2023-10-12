@@ -2,8 +2,8 @@ import { Entypo, Ionicons } from "@expo/vector-icons"
 import React from "react"
 import { TouchableOpacity, View } from "react-native"
 import { theme } from "../../../tailwind.config"
-import PrimaryButton from "../Button/PrimaryButton"
-import SecondaryButton from "../Button/SecondaryButton"
+import FilledButton from "../Button/FilledButton"
+import OutlinedButton from "../Button/OutlinedButton"
 import Avatar from "../Other/Avatar"
 import SocialPoint from "../Other/SocialPoint"
 
@@ -21,20 +21,20 @@ const AchievementCard = ({ name, image, active, onPress }) => {
 			<View className="grow">
 				<SocialPoint name={name} number={20} />
 				<View className="flex-row justify-self-end gap-x-2 self-end mt-2">
-					<PrimaryButton className="px-6">
+					<FilledButton>
 						<Ionicons
 							name="chatbubble-ellipses-outline"
 							size={24}
 							color="white"
 						/>
-					</PrimaryButton>
-					<SecondaryButton className="px-6">
+					</FilledButton>
+					<OutlinedButton>
 						<Entypo
 							name="share"
 							size={24}
 							color={theme.colors.primary.normal}
 						/>
-					</SecondaryButton>
+					</OutlinedButton>
 				</View>
 			</View>
 		</TouchableOpacity>
