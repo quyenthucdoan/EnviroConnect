@@ -9,9 +9,9 @@ import { useRoute } from "@react-navigation/native"
 import { ScrollView } from "react-native-gesture-handler"
 
 const EventOverview = () => {
-    const route = useRoute()
-    const eventId = route.params.id
-    const { data } = useService({ service:() => getActivityById(eventId) })
+	const route = useRoute()
+	const eventId = route.params.id
+	const { data } = useService({ service: () => getActivityById(eventId) })
 
 	return (
 		<ScrollView className="h-full bg-white px-2 pt-5">
@@ -29,13 +29,14 @@ const EventOverview = () => {
 					<View className="flex flex-row items-center gap-x-1">
 						<Ionicons name="calendar-sharp" size={12} color="black" />
 						<Text className="text-xsmall">
-                        {moment(data?.startDate).utc().format("ddd, MMM DD")} - {moment(data?.endDate).utc().format("ddd, MMM DD")}
+							{moment(data?.startDate).utc().format("ddd, MMM DD")} -{" "}
+							{moment(data?.endDate).utc().format("ddd, MMM DD")}
 						</Text>
 					</View>
 					<View className="flex flex-row items-center gap-x-1">
 						<Feather name="users" size={12} color="black" />
 						<Text className="text-xsmall font-semibold">
-                            {data?.joinedUser?.length} / 100
+							{data?.joinedUser?.length} / 100
 						</Text>
 					</View>
 				</View>
@@ -43,12 +44,8 @@ const EventOverview = () => {
 			<View className="mt-3 bg-primary-lighter rounded border-primary-light border-primary py-2 px-3">
 				<Text className="font-semibold text-small">Point</Text>
 				<View className="flex flex-row gap-x-5 mt-3">
-					<Text className="text-small text-primary-normal">
-						2 social days
-					</Text>
-					<Text className="text-small text-primary-normal">
-						100 points
-					</Text>
+					<Text className="text-small text-primary-normal">2 social days</Text>
+					<Text className="text-small text-primary-normal">100 points</Text>
 				</View>
 			</View>
 			<View className="mt-3">

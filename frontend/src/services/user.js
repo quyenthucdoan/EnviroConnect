@@ -5,8 +5,7 @@ const getUserById = async (id) => {
 }
 
 const getAllBuddies = async (id) => {
-    return request({ method: "GET", url: `/users/${id}/near-buddies` })
+	return request({ method: "GET", url: `/users/${id}/near-buddies` })
 }
 
 export { getAllBuddies, getUserById }
-

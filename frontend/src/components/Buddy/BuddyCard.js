@@ -15,7 +15,7 @@ const BuddyCard = ({ username, city, activities, point, avatar }) => {
 							uri: avatar,
 						}}
 					/>
-					<View className='ml-2'>
+					<View className="ml-2">
 						<SocialPoint className="flex-1" name={username} number={point} />
 						<Text className="text-ink-light mt-[8px]">{city}</Text>
 					</View>

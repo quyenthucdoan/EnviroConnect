@@ -38,12 +38,12 @@ const AchievementMapScreen = () => {
 
 	const snapPoints = useMemo(() => ["25%", "50%", "90%"], [])
 
-	
-	const { data } = useService({ service: () => getAllBuddies('65268aed6d7dd5c94b27fc22') })
-	
+	const { data } = useService({
+		service: () => getAllBuddies("65268aed6d7dd5c94b27fc22"),
+	})
 
-	const [chosen, setChosen] = useState('65268aed6d7dd5c94b27fc22')
-	const [markers, setMarkers]	= useState([])
+	const [chosen, setChosen] = useState("65268aed6d7dd5c94b27fc22")
+	const [markers, setMarkers] = useState([])
 	const [image, setImage] = useState("")
 
 	const changeChosen = async (chosen) => {
@@ -51,20 +51,22 @@ const AchievementMapScreen = () => {
 			if (activity.activityId !== undefined) return activity.activityId
 		})
 
-		const markers = await Promise.all(activityIds.map(async (activityId) => {
-			try {
-			  const activityLocation = await getActivityById(activityId);
-			  return activityLocation?.data?.location;
-			} catch (error) {
-			  console.log(error);
-			}
-		  }));
+		const markers = await Promise.all(
+			activityIds.map(async (activityId) => {
+				try {
+					const activityLocation = await getActivityById(activityId)
+					return activityLocation?.data?.location
+				} catch (error) {
+					console.log(error)
+				}
+			})
+		)
 
 		setChosen(chosen._id)
 		setImage(chosen?.image)
-		setMarkers(markers);
+		setMarkers(markers)
 	}
-	
+
 	return (
 		<Layout>
 			<Map markers={markers} team={true} img={image}></Map>
@@ -73,9 +75,13 @@ const AchievementMapScreen = () => {
 				<BottomSheetFlatList
 					data={data}
 					keyExtractor={(_, i) => i}
-					renderItem={({ item }) => 
-						<AchievementCard {...item.obj} active={item.obj?._id == chosen} onPress={()=>changeChosen(item.obj)}/>
-					}
+					renderItem={({ item }) => (
+						<AchievementCard
+							{...item.obj}
+							active={item.obj?._id == chosen}
+							onPress={() => changeChosen(item.obj)}
+						/>
+					)}
 					ItemSeparatorComponent={() => <View className="mx-6 bg-gray h-[1]" />}
 				/>
 			</BottomSheet>
