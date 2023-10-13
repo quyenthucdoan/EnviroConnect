@@ -10,7 +10,7 @@ const getActivityById = async (id) => {
 
 const registerActivity = async (userId, activityId) => {
 	return request({ method: "PUT", url: `/users/${userId}/added-activity`, data: {
-		activityid: `${activityId}`,
+		"activityId": `${activityId}`,
 	} })
 }
 

@@ -48,12 +48,8 @@ const ActivityCard = ({
 					styleText={{ color: "#276831", fontWeight: 500 }} 
 					onPress={() => {
 						if (action == 'JOIN') {
-							const { response } = registerActivity('65268aed6d7dd5c94b27fc22', data?._id)
-							console.log("Ba oi ba", response, data?._id)
-							if (response?.status == 'success') {
-								console.log('Success')
-								setAction('JOINED')
-							}
+							const { status } = registerActivity('65268aed6d7dd5c94b27fc22', data?._id)
+							setAction('JOINED')
 						}
 					}}
 				/>
