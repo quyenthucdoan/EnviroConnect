@@ -1,23 +1,10 @@
-import * as Location from "expo-location"
-import React, { useEffect, useState } from "react"
+import React from "react"
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps"
+import { useSelector } from "react-redux"
 import ActivityMarker from "../Activity/ActivityMarker"
 
 const Map = ({ markers, img, team = false }) => {
-	const [location, setLocation] = useState(null)
-
-	useEffect(() => {
-		(async () => {
-			let { status } = await Location.requestForegroundPermissionsAsync()
-			if (status !== "granted") {
-				//setErrorMsg("Permission to access location was denied")
-				return
-			}
-
-			let location = await Location.getCurrentPositionAsync({})
-			setLocation(location)
-		})()
-	}, [])
+	const location = useSelector((state) => state.location)
 
 	return (
 		<MapView
@@ -42,7 +29,7 @@ const Map = ({ markers, img, team = false }) => {
 						longitude: marker?.long,
 					}}
 				>
-					<ActivityMarker name="tree-outline" team={team} img={img}/>
+					<ActivityMarker name="tree-outline" team={team} img={img} />
 				</Marker>
 			))}
 		</MapView>

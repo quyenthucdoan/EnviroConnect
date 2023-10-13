@@ -11,10 +11,7 @@ const ActivityMarker = ({ name, team, img }) => {
 				className="bg-primary-lighter border-2 border-primary-darker justify-center items-center p-1"
 				style={{ borderRadius: 9999, width: 50, height: 50 }}
 			>
-				<View
-					className="bg-primary-darker p-1"
-					style={{ borderRadius: 9999 }}
-				>
+				<View className="bg-primary-darker p-1" style={{ borderRadius: 9999 }}>
 					<MaterialCommunityIcons name={name} size={20} color="white" />
 				</View>
 			</View>

@@ -6,7 +6,7 @@ import DoneActivity from "../components/Activity/DoneActivity"
 import DoneBuddy from "../components/Buddy/DoneBuddy"
 
 const UserScreen = () => {
-    return(
+	return (
 		<Layout statusBarBgColor={theme.colors.primary.darker}>
 			<ScrollView refreshing={false}>
 				<Section className="flex-1 mt-5">
@@ -17,7 +17,7 @@ const UserScreen = () => {
 				</Section>
 			</ScrollView>
 		</Layout>
-    )
+	)
 }
 
 export default UserScreen

@@ -13,21 +13,31 @@ const ActivitySection = () => {
 	const navigation = useNavigation()
 	const { data } = useService({ service: () => getAllActivies() })
 	const [selected, setSelected] = useState("All")
-	const categories = ["All", "Planting", "Wall Painting", "Cleanup", "Collect", "Workshop"]
+	const categories = [
+		"All",
+		"Planting",
+		"Wall Painting",
+		"Cleanup",
+		"Collect",
+		"Workshop",
+	]
 	return (
 		<>
 			<View className="flex flex-row justify-between items-center">
 				<Text className="text-title1 font-semibold">Activities Suggestion</Text>
-				<TouchableOpacity className="text-xs" onPress={() => navigation.navigate('SearchScreen')}>
-					<Text className='text-ink-light'>
+				<TouchableOpacity
+					className="text-xs"
+					onPress={() => navigation.navigate("SearchScreen")}
+				>
+					<Text className="text-ink-light">
 						<Text>On map </Text>
-						<Feather className='my-auto' name="chevron-right" size={14} />
+						<Feather className="my-auto" name="chevron-right" size={14} />
 					</Text>
 				</TouchableOpacity>
 			</View>
 			<View className="flex flex-row items-center">
 				<Ionicons name="location" size={18} color="#009580" />
-				<Text className='text-ink-light'> Find activities near you</Text>
+				<Text className="text-ink-light"> Find activities near you</Text>
 			</View>
 			<FlatList
 				data={categories}
@@ -38,14 +48,14 @@ const ActivitySection = () => {
 						<PrimaryBadge
 							value={item}
 							onPress={() => setSelected(item)}
-							style='py-1 rounded-lg'
+							style="py-1 rounded-lg"
 						/>
 					) : (
 						<BadgeCustom
 							value={item}
 							onPress={() => setSelected(item)}
-							style='py-1 rounded-lg'
-							styleText={{ color: '#3E4E63' }}
+							style="py-1 rounded-lg"
+							styleText={{ color: "#3E4E63" }}
 						/>
 					)
 				}

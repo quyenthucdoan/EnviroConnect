@@ -8,10 +8,8 @@ import { getActivityById } from "../../services/activity"
 
 const tags = ["Planting", "Near you", "Clean up"]
 
-const EventHighLight = ({
-	eventId
-}) => {
-	const { data } = useService({ service:() => getActivityById(eventId) })
+const EventHighLight = ({ eventId }) => {
+	const { data } = useService({ service: () => getActivityById(eventId) })
 
 	return (
 		<View className="bg-white mx-4 rounded-medium shadow-md shadow-ink-light mb-4">
@@ -28,7 +26,8 @@ const EventHighLight = ({
 				<View className="flex flex-row items-center gap-x-1">
 					<Ionicons name="calendar-sharp" size={14} color="#006657" />
 					<Text className="text-xs text-ink-light">
-						{moment(data?.startDate).utc().format("ddd, MMM DD")} - {moment(data?.endDate).utc().format("ddd, MMM DD")}
+						{moment(data?.startDate).utc().format("ddd, MMM DD")} -{" "}
+						{moment(data?.endDate).utc().format("ddd, MMM DD")}
 					</Text>
 				</View>
 				<View className="flex flex-row items-center gap-x-1">

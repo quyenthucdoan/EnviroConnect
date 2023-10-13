@@ -7,7 +7,13 @@ const FilledButton = ({ style, title, children, onPress, styleText }) => {
 			onPress={onPress}
 			style={style}
 		>
-			{!children ? <Text className="text-white" style={styleText}>{title}</Text> : children}
+			{!children ? (
+				<Text className="text-white" style={styleText}>
+					{title}
+				</Text>
+			) : (
+				children
+			)}
 		</TouchableOpacity>
 	)
 }

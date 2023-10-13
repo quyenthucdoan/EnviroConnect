@@ -25,8 +25,8 @@ const event = {
 const Tab = createMaterialTopTabNavigator()
 
 const DetailScreen = () => {
-    const route = useRoute()
-    const eventId = route.params.eventId
+	const route = useRoute()
+	const eventId = route.params.eventId
 
 	return (
 		<Layout>
