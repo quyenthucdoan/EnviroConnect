@@ -53,7 +53,7 @@ const AchievementMapScreen = () => {
 			<BottomSheet ref={sheetRef} snapPoints={snapPoints}>
 				<CustomTextInput placeholder={"Search your team"} />
 				<BottomSheetFlatList
-					data={data?.reduce((acc, buddy) => buddy?.obj?.buddy?.includes(userId) ?[...acc, buddy?.obj] : acc, [])}
+					data={data?.reduce((acc, buddy) => buddy?.obj?.buddy?.includes(userId) || buddy?.obj?._id === userId ?[...acc, buddy?.obj] : acc, [])}
 					keyExtractor={(_, i) => i}
 					renderItem={({ item }) => (
 						<AchievementCard

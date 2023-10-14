@@ -10,6 +10,7 @@ import SocialPoint from "../Other/SocialPoint"
 
 const BuddyCard = ({ _id, name, city, activities, image }) => {
 	const [activityNames, setActivityNames] = useState("")
+	const [isConnected, setIsConnected] = useState("Connect")
 	const userId = useSelector((state) => state.user._id)
 	useEffect(() => {
 		const fetchData = async () => {
@@ -39,6 +40,7 @@ const BuddyCard = ({ _id, name, city, activities, image }) => {
 				buddyId: buddyId,
 			})
 			console.log(res.data)
+			setIsConnected("Connected")
 		} catch (error) {
 			console.log(error)
 		}
@@ -60,7 +62,7 @@ const BuddyCard = ({ _id, name, city, activities, image }) => {
 					</View>
 				</View>
 				<View className="flex-1 items-end">
-					<OutlinedButton title="Connect" className="px-4" onPress={() => connect(_id)}/>
+					<OutlinedButton title={`${isConnected}`} className="px-4" onPress={() => connect(_id)}/>
 				</View>
 			</View>
 			{activityNames && <Text>

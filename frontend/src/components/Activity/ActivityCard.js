@@ -3,8 +3,9 @@ import { useNavigation } from "@react-navigation/native"
 import moment from "moment"
 import React, { useState } from "react"
 import { Text, TouchableOpacity, View } from "react-native"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import useService from "../../hooks/useService"
+import { addActivity, markJoin, markJoined } from "../../redux/reducers/activitySlice"
 import { getActivityById, registerActivity } from "../../services/activity"
 import FilledButton from "../Button/FilledButton"
 const ActivityCard = ({
@@ -26,8 +27,10 @@ const ActivityCard = ({
 	const location = useSelector((state) => state.location)
 
 	const [action, setAction] = useState(
-		status === undefined ? "JOIN" : status === 0 ? "JOINED" : "FINISHED"
+		status === 0 ? "JOINED" : status === 1 ? "FINISHED" : "JOIN"
 	)
+
+	const dispatch = useDispatch();
 
 	return (
 		<TouchableOpacity
@@ -35,6 +38,7 @@ const ActivityCard = ({
 			onPress={() =>
 				navigation.navigate("DetailScreen", {
 					eventId: activityId !== undefined ? activityId : _id,
+					image: data?.image
 				})
 			}
 		>
@@ -53,6 +57,7 @@ const ActivityCard = ({
 						if (action == 'JOIN') {
 							const { status } = registerActivity('65268aed6d7dd5c94b27fc22', data?._id)
 							setAction('JOINED')
+							dispatch(addActivity(data))
 						}
 					}}
 				/>

@@ -27,13 +27,14 @@ const Tab = createMaterialTopTabNavigator()
 const DetailScreen = () => {
 	const route = useRoute()
 	const eventId = route.params.eventId
+	const image = route.params.image
 
 	return (
 		<Layout>
 			<View className="flex-1 pt-32 bg-white">
 				<Image
 					className="w-full h-1/3 absolute"
-					source={require("../assets/images/ocg-saving-the-ocean.jpg")}
+					source={{uri: image}}
 				></Image>
 				<EventHighLight eventId={eventId}></EventHighLight>
 				<Tab.Navigator

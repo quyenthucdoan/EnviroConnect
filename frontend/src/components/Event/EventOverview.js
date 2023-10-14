@@ -7,11 +7,17 @@ import useService from "../../hooks/useService"
 import { getActivityById } from "../../services/activity"
 import { useRoute } from "@react-navigation/native"
 import { ScrollView } from "react-native-gesture-handler"
+import { useState } from "react"
+import { registerActivity } from "../../services/activity"
+import { useDispatch } from "react-redux"
+import { addActivity } from "../../redux/reducers/activitySlice"
 
 const EventOverview = () => {
 	const route = useRoute()
 	const eventId = route.params.id
 	const { data } = useService({ service: () => getActivityById(eventId) })
+	const [title, setTitle] = useState('JOIN NOW!')
+	const dispatch = useDispatch()
 
 	return (
 		<ScrollView className="h-full bg-white px-2 pt-5">
@@ -54,7 +60,13 @@ const EventOverview = () => {
 			</View>
 			<View className="flex-row gap-x-2 mt-4 mb-10 justify-end">
 				<OutlinedButton title="JOIN WITH TEAM"></OutlinedButton>
-				<FilledButton title="JOIN NOW!"></FilledButton>
+				<FilledButton title={title} onPress={() => {
+					if (title == 'JOIN NOW!') {
+						const { status } = registerActivity('65268aed6d7dd5c94b27fc22', eventId)
+						setTitle('JOINED')
+						dispatch(addActivity(data))
+					}
+				}}></FilledButton>
 			</View>
 		</ScrollView>
 	)
