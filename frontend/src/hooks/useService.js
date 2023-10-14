@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react"
+import { useFocusEffect } from "@react-navigation/native"
+import { useCallback, useState } from "react"
 
 const useService = ({ service, deps = [] }) => {
 	const [data, setData] = useState(null)
 
-	useEffect(() => {
+	useFocusEffect(
+		useCallback(() => {
 		const fetchData = async () => {
 			try {
 				const res = await service()
@@ -13,7 +15,8 @@ const useService = ({ service, deps = [] }) => {
 			}
 		}
 		fetchData()
-	}, deps)
+		}, deps)
+	)
 
 	return { data }
 }

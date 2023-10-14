@@ -42,7 +42,7 @@ const ActivityCard = ({
 				<View className="gap-y-2 basis-3/4">
 					<Text className="text-title2 font-bold ">{data?.name}</Text>
 					<Text className="text-primary-darker italic">
-						{data?.organizerID.name}
+						{data?.organizerID?.name}
 					</Text>
 				</View>
 				<FilledButton
