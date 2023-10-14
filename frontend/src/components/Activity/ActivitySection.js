@@ -12,7 +12,9 @@ import ActivityCard from "./ActivityCard"
 const ActivitySection = () => {
 	const navigation = useNavigation()
 	const { data } = useService({ service: () => getAllActivies() })
+	console.log(data?.filter(t => !t.joinedUser?.includes("65268aed6d7dd5c94b27fc22")))
 	const [selected, setSelected] = useState("All")
+
 	const categories = [
 		"All",
 		"Planting",
@@ -60,7 +62,7 @@ const ActivitySection = () => {
 					)
 				}
 			/>
-			<VerticalList Item={ActivityCard} data={data?.slice(0, 5)} />
+			<VerticalList Item={ActivityCard} data={data?.filter(t => !t.joinedUser?.includes("65268aed6d7dd5c94b27fc22"))?.slice(0, 5)} />
 		</>
 	)
 }

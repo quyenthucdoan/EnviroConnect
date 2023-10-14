@@ -2,9 +2,8 @@ import { Ionicons, Feather } from "@expo/vector-icons"
 import { useNavigation } from "@react-navigation/native"
 import { useState } from "react"
 import { FlatList, Text, TouchableOpacity, View } from "react-native"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import useService from "../../hooks/useService"
-import { addActivity } from "../../redux/reducers/activitySlice"
 import { getUserById } from "../../services/user"
 import BadgeCustom from "../Badge/BadgeCustom"
 import PrimaryBadge from "../Badge/PrimaryBadge"
@@ -63,7 +62,7 @@ const DoneActivity = () => {
 					)
 				}
 			/>
-			<VerticalList Item={ActivityCard} data={data?.activities.concat(activities).slice(0, 5)} />
+			<VerticalList Item={ActivityCard} data={data?.activities.slice(0, 5)} />
 		</>
 	)
 }

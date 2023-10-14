@@ -58,6 +58,7 @@ const ActivityCard = ({
 							const { status } = registerActivity('65268aed6d7dd5c94b27fc22', data?._id)
 							setAction('JOINED')
 							dispatch(addActivity(data))
+							alert(`Join activity ${data?.name} successfully!`)
 						}
 					}}
 				/>
