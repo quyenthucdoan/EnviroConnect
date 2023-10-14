@@ -8,10 +8,10 @@ import OutlinedButton from "../Button/OutlinedButton"
 import Avatar from "../Other/Avatar"
 import SocialPoint from "../Other/SocialPoint"
 
-const BuddyCard = ({ _id, name, city, activities, image }) => {
+const BuddyCard = ({ _id, name, city, activities, image, buddy }) => {
 	const [activityNames, setActivityNames] = useState("")
-	const [isConnected, setIsConnected] = useState("Connect")
 	const userId = useSelector((state) => state.user._id)
+	const [isConnected, setIsConnected] = useState(buddy?.includes(userId) ? "Connected" : "Connect")
 	useEffect(() => {
 		const fetchData = async () => {
 			const activityIds = activities?.map((activity) => {
@@ -57,7 +57,7 @@ const BuddyCard = ({ _id, name, city, activities, image }) => {
 						}}
 					/>
 					<View className="ml-2">
-						<SocialPoint className="flex-1" name={name}  />
+						<SocialPoint className="flex-1" name={name} number={activities.length}  />
 						<Text className="text-ink-light mt-[8px]">{city}</Text>
 					</View>
 				</View>
